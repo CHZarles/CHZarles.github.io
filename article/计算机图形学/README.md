@@ -1,4 +1,0 @@
-- [返回上一级 [article]](article/)
-- [计算机图形学](article/计算机图形学/)
-  - [Bresenham画直线and中点画圆法](article/计算机图形学/Bresenham画直线and中点画圆法.md)
-  - [填充算法](article/计算机图形学/填充算法.md)
