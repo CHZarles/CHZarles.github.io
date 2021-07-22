@@ -44,13 +44,13 @@ toc: true
 
    ​		下面图中的地址是新建实例的公网地址，在这个页面点击确定后
 
-   ![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gbzn2knkyhj30ik0fmqd7.jpg)
+   ![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gbzn2knkyhj30ik0fmqd7.jpg)
 
 
 
 ​			 然后Linux默认的用户名是root
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gbzn40ozlzj309l05g0tr.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gbzn40ozlzj309l05g0tr.jpg)
 
 ​         点确定后输入自己的密码，然后就连接上服务器了。
 
@@ -69,7 +69,6 @@ toc: true
 - [用iptables搭建一套强大的安全防护盾](http://www.imooc.com/learn/389)
 - [centos7常用环境搭建](https://segmentfault.com/a/1190000021710684)
 - [数据库—阿里云大学](https://developer.aliyun.com/course/1696?spm=5176.10731542.0.0.30276ae0Jxr5L1)
-
 
 
 

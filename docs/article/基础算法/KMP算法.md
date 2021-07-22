@@ -72,7 +72,7 @@ pattern的各子串和相关的next的数组的值如下。
 
   -  则 next[k+1] =next[k]+1 ;
 
-  ![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gatxssurjtj30qy0cmaac.jpg)
+  ![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gatxssurjtj30qy0cmaac.jpg)
 
 - 如果pattern[j+1] ！= pattern[i] ：
 
@@ -80,7 +80,7 @@ pattern的各子串和相关的next的数组的值如下。
   - 如果pattern[j+1] == pattern[i]    则 next[k+1] = next[k]+1 ；
   - 如果pattern[j+1] ！= pattern[i]  则 next[k+1] = -1;
 
-  ![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gatxts3efsj312b0edaao.jpg)
+  ![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gatxts3efsj312b0edaao.jpg)
 
 
 
@@ -88,7 +88,7 @@ pattern的各子串和相关的next的数组的值如下。
 
 文本匹配还是有两个指针，看图。
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gatyw92t4mj30s706kjre.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gatyw92t4mj30s706kjre.jpg)
 
 **指针j  指向当前匹配串已经匹配好的前缀的最后一个字符**，**指针i  指向当前文本串正在匹配的字符**。
 
@@ -105,46 +105,46 @@ pattern的各子串和相关的next的数组的值如下。
 原博客地址_REference：https://www.cnblogs.com/SYCstudio/p/7194315.html
 
 首先我们还是从0开始匹配：
-![此处输入图片的描述](https://images.cnblogs.com/cnblogs_com/SYCstudio/1036212/o_KMP2-2.gif)
-此时，我们发现，A的第5位和B的第5位不匹配（注意从０开始编号），此时i=5,j=5，那么我们看next[j-1]的值：
+![此处输入图片的描述](https://gitee.com/chzarles/images/raw/master/imgs/o_KMP2-2.gif)
+此时，我们发现，A的第5位和B的第5位不匹配（注意从０开始编号)，此时i=5,j=5，那么我们看next[j-1]的值：
 
 > next[5-1]=2;
 
 这说明我们接下来的匹配只要从B串第２位开始（也就是第３个字符）匹配，因为前两位已经是匹配的啦，具体请看图：
-![此处输入图片的描述](https://images.cnblogs.com/cnblogs_com/SYCstudio/1036212/o_KMP3.gif)
+![此处输入图片的描述](https://gitee.com/chzarles/images/raw/master/imgs/o_KMP3.gif)
 然后再接着匹配：
-![此处输入图片的描述](https://images.cnblogs.com/cnblogs_com/SYCstudio/1036212/o_KMP4.gif)
+![此处输入图片的描述](https://gitee.com/chzarles/images/raw/master/imgs/o_KMP4.gif)
 我们又发现，A串的第13位和B串的第10位不匹配，此时i=13,j=10，那么我们看next[j-1]的值：
 
 > next[10-1]=4
 
 这说明B串的0~3位是与当前(i-4)~(i-1)是匹配的，我们就不需要重新再匹配这部分了，把B串向后移，从Ｂ串的第４位开始匹配：
-![此处输入图片的描述](https://images.cnblogs.com/cnblogs_com/SYCstudio/1036212/o_KMP5.gif)
+![此处输入图片的描述](https://gitee.com/chzarles/images/raw/master/imgs/o_KMP5.gif)
 
 这时我们发现A串的第13位和B串的第4位依然不匹配
-![此处输入图片的描述](https://images.cnblogs.com/cnblogs_com/SYCstudio/1036212/o_%E5%9B%BE%E7%89%8728.png)
+![此处输入图片的描述](https://gitee.com/chzarles/images/raw/master/imgs/o_%E5%9B%BE%E7%89%8728.png)
 此时i=13,j=4，那么我们看next[j-1]的值：
 
 > next[4-1]=1
 
 这说明B串的第0位是与当前i-1位匹配的，所以我们直接从B串的第1位继续匹配：
-![此处输入图片的描述](https://images.cnblogs.com/cnblogs_com/SYCstudio/1036212/o_KMP6.gif)
+![此处输入图片的描述](https://gitee.com/chzarles/images/raw/master/imgs/o_KMP6.gif)
 但此时B串的第1位与A串的第13位依然不匹配
-![此处输入图片的描述](https://images.cnblogs.com/cnblogs_com/SYCstudio/1036212/o_%E5%9B%BE%E7%89%8733.png)
+![此处输入图片的描述](https://gitee.com/chzarles/images/raw/master/imgs/o_%E5%9B%BE%E7%89%8733.png)
 此时，i=13,j=1,所以我们看一看next[j-1]的值:
 
 > next[1-1]=0
 
 好吧，这说明已经没有相同的前后缀了，直接把B串向后移一位，直到发现B串的第0位与A串的第i位可以匹配（在这个例子中，i=13）
-![此处输入图片的描述](https://images.cnblogs.com/cnblogs_com/SYCstudio/1036212/o_KMP7.gif)
+![此处输入图片的描述](https://gitee.com/chzarles/images/raw/master/imgs/o_KMP7.gif)
 再重复上面的匹配过程，我们发现，匹配成功了！
-![此处输入图片的描述](https://images.cnblogs.com/cnblogs_com/SYCstudio/1036212/o_KMP8.gif)
+![此处输入图片的描述](https://gitee.com/chzarles/images/raw/master/imgs/o_KMP8.gif)
 
 这就是KMP算法的过程。
 另外强调一点，当我们将B串向后移的过程其实就是i++,而当我们不动B，而是匹配的时候，就是i++,j++，这在后面的代码中会出现，这里先做一个说明。
 
 最后来一个完整版的（话说做这些图做了好久啊！！！！）：
-![此处输入图片的描述](https://images.cnblogs.com/cnblogs_com/SYCstudio/1036212/o_KMP9.gif)
+![此处输入图片的描述](https://gitee.com/chzarles/images/raw/master/imgs/o_KMP9.gif)
 
 
 

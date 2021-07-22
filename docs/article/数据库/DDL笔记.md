@@ -61,13 +61,13 @@ cimestamp: 时间戳类型
 
 字符串类型
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gcq5jyrszvj30jz0csdn1.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcq5jyrszvj30jz0csdn1.jpg)
 
 
 
 blob类型
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gcq5pabd06j30n607oq7u.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcq5pabd06j30n607oq7u.jpg)
 
 
 

@@ -100,7 +100,7 @@ Notice that at the end of this, though, that `d(C)` is still `0`, **even though 
 
  **高票的例子，最后有一个点红色(那个点没被正确更新，算法运行结果错误)**
 
-![dj.gif](http://ww1.sinaimg.cn/large/006eb5E0gy1g9psjiax4pg30bl08xac7.gif)
+![dj.gif](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1g9psjiax4pg30bl08xac7.gif)
 
 
 

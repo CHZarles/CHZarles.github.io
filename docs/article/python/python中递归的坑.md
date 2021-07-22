@@ -33,7 +33,7 @@ None
 
 离谱 ，按照我以往学习c++的经验 ，返回值感觉应该是一个数(此处调用返回的结果应该是1024)
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1ghbmk0lwnvj30kv0cgq3w.jpg)
+![image.png](https://i.loli.net/2021/07/22/oJZxr132KSzuYhQ.jpg)
 
 python没有伪递归优化，不应该让递归无限大调用。
 
@@ -42,7 +42,6 @@ python没有伪递归优化，不应该让递归无限大调用。
 [Python 递归函数返回值为None的解决办法](https://blog.csdn.net/ha_hha/article/details/79393041)
 
 <!--more-->
-
 
 
 

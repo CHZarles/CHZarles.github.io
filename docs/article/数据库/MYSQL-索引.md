@@ -27,13 +27,13 @@ toc: true
 
 <!--more-->
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gcr8mdp9rrj30ou0cc78b.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcr8mdp9rrj30ou0cc78b.jpg)
 
 # 聚集索引
 
 
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gcr8qc1x32j30kg0bw40e.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcr8qc1x32j30kg0bw40e.jpg)
 
 
 
@@ -41,13 +41,13 @@ toc: true
 
 # 非聚集索引
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gcr8p3ikp6j30mf0ckacv.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcr8p3ikp6j30mf0ckacv.jpg)
 
 
 
 # 说明
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gcr8sltszej30nl0by41w.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcr8sltszej30nl0by41w.jpg)
 
 
 
@@ -66,9 +66,9 @@ CREATE [UNIQUE] [CLUSTER] INDEX <索引名> ON <表名>(<列名>[<次序>][,<列
 
 
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gcr953c3kdj30cd054gmb.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcr953c3kdj30cd054gmb.jpg)
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gcr95iotakj30co06kjsc.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcr95iotakj30co06kjsc.jpg)
 
 ```tcl
 *索引删除
@@ -77,4 +77,4 @@ CREATE [UNIQUE] [CLUSTER] INDEX <索引名> ON <表名>(<列名>[<次序>][,<列
 
 
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gcra928a4kj30e50dvgut.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcra928a4kj30e50dvgut.jpg)

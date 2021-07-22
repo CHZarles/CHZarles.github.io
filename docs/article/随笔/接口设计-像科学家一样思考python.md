@@ -51,7 +51,7 @@ turtle.mainloop()
 
 运行结果
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gamy93uwz5j31h70rhn1h.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gamy93uwz5j31h70rhn1h.jpg)
 
 
 

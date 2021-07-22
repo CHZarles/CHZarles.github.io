@@ -18,7 +18,7 @@ toc: true
 
 以有向图的深搜来理一理深搜的一些概念。
 
-![dfs1.gif](http://ww1.sinaimg.cn/large/006eb5E0gy1g886drw4u4g30ap08kq82.gif)
+![dfs1.gif](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1g886drw4u4g30ap08kq82.gif)
 
 **注：图中灰色的边表示这条边指向的点之前已经被访问了。**
 
@@ -29,13 +29,13 @@ toc: true
 奇妙的是，每个深搜的过程，都会对应一颗搜索树，上面那个图对应的搜索树是这样的：
 <!--more-->
 
-![dfs2.gif](http://ww1.sinaimg.cn/large/006eb5E0gy1g886hshvgag30ap08k0wm.gif)
+![dfs2.gif](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1g886hshvgag30ap08k0wm.gif)
 
 
 
 ## 怎么思考dfs
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1g8931tr8m3j30xg0fstc1.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1g8931tr8m3j30xg0fstc1.jpg)
 
 思考深搜要注意三个地方
 

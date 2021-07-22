@@ -21,7 +21,7 @@ toc: true
 
 ![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gfxohvpcmtj30ex0fx77a.jpg)
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gfxrhwncvrj30oa0evn2l.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gfxrhwncvrj30oa0evn2l.jpg)
 
 <!--more-->
 
@@ -237,27 +237,27 @@ int  main()
 
 程序调用accept()，一直阻塞等待客户端连接到服务器
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gfxpzw6pxfj30y003s3yh.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gfxpzw6pxfj30y003s3yh.jpg)
 
 2.**接下来运行客户端程序**
 
 客户端的窗口显示连接到了服务器
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gfxrkh4r1dj30x803zjry.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gfxrkh4r1dj30x803zjry.jpg)
 
 服务器窗口也显示"有一个客户端连接到服务器" , 这时accept()的阻塞解除了，系统阻塞在recv()函数
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gfxrkpfa6ij30xc03rdg7.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gfxrkpfa6ij30xc03rdg7.jpg)
 
 3.**接下来客户端发送信息**
 
 客户端发送完信息后就结束程序了
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gfxqk4h15jj30xn08tq3l.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gfxqk4h15jj30xn08tq3l.jpg)
 
 服务器程序又回到了accept()阻塞
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gfxqkh5iqij30xz05pt8v.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gfxqkh5iqij30xz05pt8v.jpg)
 
 
 

@@ -36,7 +36,7 @@ reference：[Hexo+码云+git快速搭建免费的静态Blog](https://segmentfaul
 
 **2.在克隆/下载中，复制HTTPS里的链接。**
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gck7oati43j30u40bstbg.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gck7oati43j30u40bstbg.jpg)
 
 
 
@@ -48,7 +48,7 @@ reference：[Hexo+码云+git快速搭建免费的静态Blog](https://segmentfaul
 
 **3.找到Blog本地的根目录里的_config.yml文件，找到deploy这一项，将之前复制的HTTPS里的链接复制到repo后面，然后修改type的值为git，然后保存即可。**
 
-![undefined](http://ww1.sinaimg.cn/large/006eb5E0gy1gck7pbansnj30kh0gvjs6.jpg)
+![undefined](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gck7pbansnj30kh0gvjs6.jpg)
 
 
 
@@ -67,7 +67,7 @@ $ hexo deploy
 选择`服务—>Gitee Pages`，我们使用master分支，然后直接点“启动”，即可启动page服务。
 更多关于码云page的说明可参考官网：[码云Gitee帮助文档](http://git.mydoc.io/?t=154714)
 
-![undefined](http://ww1.sinaimg.cn/large/006eb5E0gy1gck7plfu61j30up0ep76g.jpg)
+![undefined](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gck7plfu61j30up0ep76g.jpg)
 
 
 
@@ -77,7 +77,7 @@ $ hexo deploy
 
 有了免费的服务器(page)之后，我们还可以把它和我们个人电脑作一个绑定，以后使用git通讯就不用总是输入账号密码，自然方便多了！
 
-![undefined](http://ww1.sinaimg.cn/large/006eb5E0gy1gck7px6cacj30ui0h4myl.jpg)
+![undefined](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gck7px6cacj30ui0h4myl.jpg)
 
 这里不啰嗦了，最完美的配置SSH教程参见官网：[生成并部署SSH key](http://git.mydoc.io/?t=154712)
 

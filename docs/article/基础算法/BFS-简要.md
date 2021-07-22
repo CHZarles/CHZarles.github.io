@@ -16,7 +16,7 @@ toc: true
 
 以有向图的广搜来理一理广搜的一些概念。
 
-![bfs1.gif](http://ww1.sinaimg.cn/large/006eb5E0gy1g887pigx4bg30ay09mk1h.gif)
+![bfs1.gif](https://gitee.com/chzarles/images/raw/master/imgs/ZhgjITqXFvNlxfo.gif)
 
 
 
@@ -66,7 +66,7 @@ while (q.size())
 
 **对比BFS和DFS：**
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1g8880oqcazj30ml06o75s.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/mPpW9Zk148BRIti.jpg)
 
 ------
 

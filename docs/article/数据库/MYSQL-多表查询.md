@@ -60,7 +60,7 @@ SELECT column_name(s) FROM  table2
 
 ## 笛卡尔积
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gcregbx7hbj30s80ewdhl.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcregbx7hbj30s80ewdhl.jpg)
 
 
 
@@ -68,7 +68,7 @@ SELECT column_name(s) FROM  table2
 
 ## 等值连接
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gcrf6nd0ckj30r00d9wg3.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcrf6nd0ckj30r00d9wg3.jpg)
 
 
 
@@ -78,7 +78,7 @@ SELECT column_name(s) FROM  table2
 
 ## 自然连接
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gcria9zmygj30vg0e00ua.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcria9zmygj30vg0e00ua.jpg)
 
 ```tcl
 *mysql语句，如果两个表只有一个属性相同
@@ -91,7 +91,7 @@ select * from  s natural join sc;
 
 ## 自身连接
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gcrii6frlgj30vw0extat.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcrii6frlgj30vw0extat.jpg)
 
 
 
@@ -119,7 +119,7 @@ select * from  s natural join sc;
 
 
 
-![undefined](http://ww1.sinaimg.cn/large/006eb5E0gy1gcrkdllby4j30qu0l4wix.jpg)
+![undefined](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcrkdllby4j30qu0l4wix.jpg)
 
 
 
@@ -129,7 +129,7 @@ select * from  s natural join sc;
 
 ## SQL JOIN 中 on 与 where 的区别
 
-![undefined](http://ww1.sinaimg.cn/large/006eb5E0gy1gcrk97xv0aj311y0kgt9c.jpg)
+![undefined](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcrk97xv0aj311y0kgt9c.jpg)
 
 - **left join** : 左连接，返回左表中所有的记录以及右表中连接字段相等的记录。
 - **right join** : 右连接，返回右表中所有的记录以及左表中连接字段相等的记录。
@@ -172,9 +172,9 @@ select * form tab1 left join tab2 on (tab1.size = tab2.size) where tab2.name='AA
 select * form tab1 left join tab2 on (tab1.size = tab2.size and tab2.name='AAA')
 ```
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gcrkas02woj30j80c6dgd.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcrkas02woj30j80c6dgd.jpg)
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gcrkb67thuj30jc074mxg.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcrkb67thuj30jc074mxg.jpg)
 
 其实以上结果的关键原因就是 **left join、right join、full join** 的特殊性，不管 **on** 上的条件是否为真都会返回 **left** 或 **right** 表中的记录，**full** 则具有 **left** 和 **right** 的特性的并集。 而 **inner jion** 没这个特殊性，则条件放在 **on** 中和 **where** 中，返回的结果集是相同的。
 

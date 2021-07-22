@@ -17,13 +17,13 @@ toc: true
 
 ##  视图
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gd0h1q0flxj30yl0bqace.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gd0h1q0flxj30yl0bqace.jpg)
 
 
 
 **常见的视图形式**
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gd0h55mycmj30o20eutar.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gd0h55mycmj30o20eutar.jpg)
 
 
 
@@ -31,7 +31,7 @@ toc: true
 
 ## 创建视图
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gd0h3a1kfhj30zd0iadil.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gd0h3a1kfhj30zd0iadil.jpg)
 
 <!--more-->
 
@@ -42,7 +42,6 @@ toc: true
 
 
 ## 行列子视图
-
 
 
 

@@ -17,12 +17,12 @@ toc: true
 
 ## [题目描述：字符串哈希](   https://www.acwing.com/problem/content/843/ )
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gaw329b0uvj30vg04274u.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gaw329b0uvj30vg04274u.jpg)
 
 
 #### 输入格式
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gaw32py0b1j30pk05ygme.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gaw32py0b1j30pk05ygme.jpg)
 
 #### 输出格式
 

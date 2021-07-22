@@ -19,7 +19,7 @@ toc: true
 
 还好，没费多大功夫，Hexo博客又重生了。
 
-![img](http://ww1.sinaimg.cn/large/66101050ly1fd2szawfzuj20hs07sq36)
+![img](https://gitee.com/chzarles/images/raw/master/imgs/66101050ly1fd2szawfzuj20hs07sq36)
 
 ## Hexo博客部署恢复
 

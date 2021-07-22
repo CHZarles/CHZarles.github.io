@@ -89,7 +89,7 @@ LIMIT/TOP
 
 MySQL的语句一共分为11步，如下图所标注的那样，最先执行的总是FROM操作，最后执行的是LIMIT操作。其中每一个操作都会产生一张虚拟的表，这个虚拟的表作为一个处理的输入，只是这些虚拟的表对用户来说是透明的，但是只有最后一个虚拟的表才会被作为结果返回。如果没有在语句中指定某一个子句，那么将会跳过相应的步骤。
 
-![undefined](http://ww1.sinaimg.cn/large/006eb5E0ly1ge5qd6k12nj307j070weq.jpg)
+![undefined](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0ly1ge5qd6k12nj307j070weq.jpg)
 
 **下面我们来具体分析一下查询处理的每一个阶段**
 
@@ -114,7 +114,6 @@ DISTINCT： 对VT8中的记录进行去重。产生虚拟表VT9.
 ORDER BY: 将虚拟表VT9中的记录按照<order_by_list>进行排序操作，产生虚拟表VT10.
 
 LIMIT：取出指定行的记录，产生虚拟表VT11, 并将结果返回。
-
 
 
 

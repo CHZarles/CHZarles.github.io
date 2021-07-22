@@ -15,7 +15,7 @@ toc: true
 
 我用的是中文版的matlab，左边的文件区可以选择要打开的文件，编辑器就是文本编辑器用于写代码再运行，命令行窗口就是边输入边运行，工作区可以显示代码工作时各种变量及其对应的值。
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1g81hz66b5lj31hc0spdlk.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1g81hz66b5lj31hc0spdlk.jpg)
 
 ## 基本数据类型
 

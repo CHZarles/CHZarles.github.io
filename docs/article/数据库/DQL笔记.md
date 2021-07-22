@@ -29,7 +29,7 @@ toc: true
 
 **示例表格**：
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gcr195d5qfj30ij0a679g.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcr195d5qfj30ij0a679g.jpg)
 
 
 
@@ -164,7 +164,7 @@ SELECT * FROM  emp ORDER BY sal ASC , comm DESC:
 
 **一般分组配合聚合函数使用(例），除了分组列是列名，其他都是聚合函数**
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gcr4eiode8j30eo05vab9.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcr4eiode8j30eo05vab9.jpg)
 
 ```tcl
 *分组查询
@@ -193,7 +193,7 @@ SELECT * FROM  emp ORDER BY sal ASC , comm DESC:
 
 **例：查询 工资大于15000的人员的人数 超过两个的部门（没有排序）。**
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1gcr4qwmbs5j30ne04nt9k.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1gcr4qwmbs5j30ne04nt9k.jpg)
 
 
 

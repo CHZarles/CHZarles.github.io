@@ -23,9 +23,9 @@ toc: true
 
 
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1g7z4w82h7wj30rb083q36.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1g7z4w82h7wj30rb083q36.jpg)
 
-![image.png](http://ww1.sinaimg.cn/large/006eb5E0gy1g7z59s8c7xj30qs077dg1.jpg)
+![image.png](https://gitee.com/chzarles/images/raw/master/imgs/006eb5E0gy1g7z59s8c7xj30qs077dg1.jpg)
 
 <!--more-->
 附上知乎链接：[hexo 下的分类和表签无法显示，怎么解决？]( https://www.zhihu.com/question/29017171 )

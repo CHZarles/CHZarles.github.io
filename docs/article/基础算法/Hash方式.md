@@ -67,12 +67,6 @@ No
 
 ## 算法/复杂度
 
-简单提要：
-
-![image-20200114123515656](C:\Users\123456\AppData\Roaming\Typora\typora-user-images\image-20200114123515656.png)
-
-
-
 拉链法
 
 ```c++
@@ -175,5 +169,4 @@ int main()
 
 
 ```
-
 
