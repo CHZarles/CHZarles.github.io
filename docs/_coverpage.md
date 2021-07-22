@@ -6,9 +6,13 @@
 
 
 
-# 写点东西 不做混子
+# Stay Foolish
 
-### > Hello World
+### > Hello World  记录一些微不足道的东西
+
+### > This is  Charles's blog   :D
+
+
 
 
 
@@ -16,7 +20,7 @@
 
  [GitHub](https://github.com/CHZarles/) [Get Started](/README.md)
 
-![](bg1.png)
+
 
 
 
