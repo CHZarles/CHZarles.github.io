@@ -1,0 +1,17 @@
+#include<iostream>
+#include<cstring>
+#include<vector>
+using namespace std;
+int main()
+{
+    //要有一个结束符号，此处以#作结束符
+    //基本设计
+    string str;
+    char ch;
+    while(cin.get(ch)&&ch!='#')         //可以存换行符，空格
+    str+=ch;
+    
+    cout<<"输出结果是:"<<str;
+
+	//其余的视情况一般用cin或cin.get(&arry,int)或cin.getline(&arry,int)或getline(cin,string) 都可搞定吧（这里说的都不可以存换行符）
+}
