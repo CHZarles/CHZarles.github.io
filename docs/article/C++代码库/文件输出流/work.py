@@ -1,7 +1,7 @@
 import os
 
 def work(path):
-    with open(path,mode='r') as f:
+    with open(path,mode='r',encoding='ANSI') as f:
         res=f.read() # 会将文件的内容由硬盘全部读入内存，赋值给res
         res='```C++\n' + res +  '\n```'
         with open(path[:-4]+'.md','w',encoding='utf-8') as w:
