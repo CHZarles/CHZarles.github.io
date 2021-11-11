@@ -29,7 +29,6 @@
         - [混合输入字符串和数字](article/C++/C++代码库/文件输出流/混合输入字符串和数字.md)
     - [C++学习笔记](article/C++/C++学习笔记/)
       - [智能指针](article/C++/C++学习笔记/智能指针.md)
-  - [Hadpood](article/Hadpood/)
   - [python](article/python/)
     - [python开发库](article/python/python开发库/)
       - [configparser模块](article/python/python开发库/configparser模块.md)
