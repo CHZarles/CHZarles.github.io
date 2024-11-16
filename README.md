@@ -1,1 +1,1 @@
-# CHZarles.github.io
+mkdocs gh-deploy --clean
