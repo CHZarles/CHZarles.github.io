@@ -1,0 +1,22 @@
+# Copyright (c) 2023 - now Shuaiwen Cui
+# Built upon MkDocs & Material for MkDocs
+
+# Project information
+site_name: CHZarles
+site_url: https://localhost:8000/ # build and run on server, to visit it, type in the server's IP address and port number like this: xxx.xxx.xxx.xxx:8000
+site_author: charles
+site_description: >-
+  Welcome to Shaun's rabbit hole. This site serves as a personal knowledge base for me to record my thoughts and ideas. It is also a place for me to share my knowledge and experience with the world. I hope you find something useful here.
+
+# Repository
+repo_name: CHZarles/CHZarles.github.io
+repo_url: https://github.com/CHZarles/CHZarles.github.io.git
+
+# Copyright
+copyright: Copyright &copy; 2023 ~ now | 🚀 Charles
+
+# Configuration
+theme:
+  custom_dir: material/overrides
+  name: material
+  language: en
