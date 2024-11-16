@@ -4,8 +4,4 @@
          <loc>https://localhost:8000/</loc>
          <lastmod>2024-11-16</lastmod>
     </url>
-    <url>
-         <loc>https://localhost:8000/blog/</loc>
-         <lastmod>2024-11-16</lastmod>
-    </url>
 </urlset>
