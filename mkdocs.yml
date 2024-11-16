@@ -138,6 +138,10 @@ nav:
   - 🚀Home: index.md
   - 🤿DeepLearning:
     - 后向传播: docs/post-pro.md
+  - 🏁Competative Programing: none.md
+  - 📚CS basic: none.md
+  - 🤗Other: none.md
+    
   # - User Guide:
   #     - Writing your docs: writing-your-docs.md
   #     - Styling your docs: styling-your-docs.md
