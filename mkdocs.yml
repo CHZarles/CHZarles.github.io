@@ -84,6 +84,25 @@ theme:
       software-tag: fontawesome/solid/laptop-code
 
 # 扩展
+
+# mathjax
+extra_javascript:
+  #https://squidfunk.github.io/mkdocs-material/reference/math/?h=mathjax#katex-mkdocsyml
+  #
+  - javascripts/katex.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+  # - javascripts/config.js
+  # - https://polyfill.io/v3/polyfill.min.js?features=es6
+  # - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - https://unpkg.com/katex@0/dist/katex.min.css
+
 markdown_extensions: # markdown extensions
   - abbr
   - admonition
@@ -103,10 +122,11 @@ markdown_extensions: # markdown extensions
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
       emoji_index: !!python/name:material.extensions.emoji.twemoji
   - pymdownx.highlight:
-      anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
+      use_pygments: true
+      auto_title: true
+  - pymdownx.superfences
   - pymdownx.inlinehilite
+  - pymdownx.snippets
   - pymdownx.keys
   - pymdownx.magiclink:
       normalize_issue_symbols: true
@@ -118,11 +138,6 @@ markdown_extensions: # markdown extensions
   - pymdownx.snippets:
       auto_append:
         - includes/mkdocs.md
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
       combine_header_slug: true
@@ -133,21 +148,51 @@ markdown_extensions: # markdown extensions
       custom_checkbox: true
   - pymdownx.tilde
 
+
+# for highlight
+# extra_javascript:
+#   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js
+#   - javascripts/highlight.js
+# extra_css:
+#   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css
+
 # 导航栏配置
 nav:
   - 🚀Home: index.md
   - 🤿DeepLearning:
-    - 后向传播: docs/post-pro.md
+    - Pytorch踹门指南:
+      - Pytorch 入门(tudui版):
+        - dir 和 help 函数: DeepLearning/Pytorch_tudui_intro/p4 dir和help函数.md
+        - Dataset: DeepLearning/Pytorch_tudui_intro/p6-p7 Dataset.md
+        - TensorBoard: ./DeepLearning/Pytorch_tudui_intro/p8-p9 TensorBoard.md
+        - Transforms: ./DeepLearning/Pytorch_tudui_intro/p10-p11 Transforms.md
+        - 常用Transforms : ./DeepLearning/Pytorch_tudui_intro/p12-p13 常用Transforms.md
+        - torchvision: ./DeepLearning/Pytorch_tudui_intro/p14 torchvision.md
+        - dataloader: ./DeepLearning/Pytorch_tudui_intro/p15 dataloader.md
+        - nn.module: ./DeepLearning/Pytorch_tudui_intro/p16 nn.module.md
+        - 卷积操作: ./DeepLearning/Pytorch_tudui_intro/p17 卷积操作.md
+        - 卷积层: ./DeepLearning/Pytorch_tudui_intro/p18 卷积层.md
+        - 最大池化层: ./DeepLearning/Pytorch_tudui_intro/p19 最大池化层.md
+        - 激活函数: ./DeepLearning/Pytorch_tudui_intro/p20 激活函数.md
+        - 线性层: ./DeepLearning/Pytorch_tudui_intro/p21 线性层.md
+        - sequential: ./DeepLearning/Pytorch_tudui_intro/p22 sequential.md
+        - 损失函数和反向传播: ./DeepLearning/Pytorch_tudui_intro/p23 损失函数和反向传播.md
+        - 优化器: ./DeepLearning/Pytorch_tudui_intro/p24 优化器.md
+        - 现有模型修改: ./DeepLearning/Pytorch_tudui_intro/p25 现有模型修改.md
+        - 模型保存和修改: ./DeepLearning/Pytorch_tudui_intro/p26 模型保存和加载.md
+        - 模型训练套路: ./DeepLearning/Pytorch_tudui_intro/p27-p29 模型训练套路.md
+        - 使用GPU: ./DeepLearning/Pytorch_tudui_intro/p30-p31 GPU.md
+        - 模型验证: ./DeepLearning/Pytorch_tudui_intro/p32 验证套路.md
+      - Pytorch面试精华: none.md
+    - 知识碎片:
+      - 后向传播: docs/post-pro.md
   - 🏁Competative Programing: none.md
   - 📚CS basic: none.md
+  - 🐦Projects: 
+    - KnowledgeBrain: 
+      - reference: projects/KnowledgeBrain/reference.md
   - 🤗Other: none.md
     
-  # - User Guide:
-  #     - Writing your docs: writing-your-docs.md
-  #     - Styling your docs: styling-your-docs.md
-  # - About: about.md
-  # - 大模型:
-  #     sdf.md
 
 # 插件配置
 plugins:
