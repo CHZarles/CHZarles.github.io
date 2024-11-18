@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://www.cnblogs.com/wlzy/p/7751297.html -->
+<html lang="zh-cn" style="--olcb-folder-code-block-max-height: 80vh; --cnb-code-bg: rgb(245, 245, 245); --cnb-code-font-size: 12px; --cnb-code-color: rgb(68, 68, 68);"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="never">
+    <meta name="keywords" content="机器学习">
+    <meta name="description" content="一、反向传播的由来 在我们开始DL的研究之前，需要把ANN—人工神经元网络以及bp算法做一个简单解释。关于ANN的结构，我不再多说，网上有大量的学习资料，主要就是搞清一些名词：输入层/输入神经元，输出层/输出神经元，隐层/隐层神经元，权值，偏置，激活函数接下来我们需要知道ANN是怎么训练的，假设AN">
+    <meta property="og:description" content="一、反向传播的由来 在我们开始DL的研究之前，需要把ANN—人工神经元网络以及bp算法做一个简单解释。关于ANN的结构，我不再多说，网上有大量的学习资料，主要就是搞清一些名词：输入层/输入神经元，输出层/输出神经元，隐层/隐层神经元，权值，偏置，激活函数接下来我们需要知道ANN是怎么训练的，假设AN">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>反向传播算法（过程及公式推导） - ZYVV - 博客园</title>
+    <link rel="canonical" href="https://www.cnblogs.com/wlzy/p/7751297.html">
+    <link rel="shortcut icon" id="favicon" href="https://assets.cnblogs.com/favicon.svg?v=2" type="image/svg+xml">
+    
+    <style>#home :not(.cnblogs_code):not(.cnblogs_Highlighter)>pre:not([highlighted]):not([class*="brush:"]) code:not(.hljs), :not(.cnblogs_code):not(.cnblogs_Highlighter)>pre:not([highlighted]):not([class*="brush:"]) code:not(.hljs) {background: rgb(245, 245, 245);
+        padding: 12px;
+        border: 0.8px solid rgb(204, 204, 204);
+        border-radius: 3px;
+        border-color: transparent;
+        color: rgb(68, 68, 68);
+        font-family: "Courier New", sans-serif;
+        font-size: 12px</style><link rel="stylesheet" href="./bpalgoritm0_files/blog-common.min.css">
+    
+
+    <link id="MainCss" rel="stylesheet" href="./bpalgoritm0_files/bundle-codinglife.min.css">
+        <link id="highlighter-theme-cnblogs" type="text/css" rel="stylesheet" href="./bpalgoritm0_files/cnblogs.css">
+    
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./bpalgoritm0_files/bundle-codinglife-mobile.min.css">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/wlzy/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/wlzy/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/wlzy/wlwmanifest.xml">
+    <script>
+        var currentBlogId = 307187;
+        var currentBlogApp = 'wlzy';
+        var isLogined = false;
+        var isBlogOwner = false;
+        var skinName = 'CodingLife';
+        var visitorUserId = '';
+        var hasCustomScript = false;
+        window.cb_enable_mathjax = true;
+        window.mathEngine = 0;
+        window.codeHighlightEngine = 1;
+        window.enableCodeLineNumber = false;
+        window.codeHighlightTheme = 'cnblogs';
+        window.darkModeCodeHighlightTheme = 'vs2015';
+        window.isDarkCodeHighlightTheme = false;
+        window.isDarkModeCodeHighlightThemeDark = true;
+        window.isDisableCodeHighlighter = false;
+        window.enableCodeThemeTypeFollowSystem = false;
+        window.enableMacStyleCodeBlock = false;
+    </script>
+        <script>
+            window.currentPostId = 7751297;
+            window.currentPostDateAdded = '2017-10-29 21:19';
+        </script>
+    <script src="./bpalgoritm0_files/jquery-3.3.1.min.js.下载"></script>
+    <script src="./bpalgoritm0_files/blog-common.min.js.下载"></script><style>.medium-zoom-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 300ms;
+  will-change: opacity;
+}
+
+.medium-zoom--opened .medium-zoom-overlay {
+  cursor: pointer;
+  cursor: zoom-out;
+  opacity: 1;
+}
+
+.medium-zoom-image {
+  cursor: pointer;
+  cursor: zoom-in;
+  /*
+    The `transition` is marked as "!important" for the animation to happen
+    even though it's overriden by another inline `transition` style attribute.
+
+    This is problematic with frameworks that generate inline styles on their
+    images (e.g. Gatsby).
+
+    See https://github.com/francoischalifour/medium-zoom/issues/110
+   */
+  transition: transform 300ms cubic-bezier(0.2, 0, 0.2, 1) !important;
+}
+
+.medium-zoom-image--hidden {
+  visibility: hidden;
+}
+
+.medium-zoom-image--opened {
+  position: relative;
+  cursor: pointer;
+  cursor: zoom-out;
+  will-change: transform;
+}
+</style><script id="hljs-script" src="./bpalgoritm0_files/highlight.min.js.下载" type="text/javascript" async=""></script>
+    
+<script id="mathjax" src="./bpalgoritm0_files/MathJax.js.下载" type="text/javascript" async=""></script><meta property="og:image" content="https://img-blog.csdn.net/20161105213621530"><style type="text/css"></style><style>.eudic-tippy-content-container[_ngcontent-ng-c4173660981]{max-width:250px!important}</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c2179709669]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c2179709669]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c2179709669]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c2179709669]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c2179709669]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c2179709669]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c2179709669]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c2179709669]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c2179709669]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c2179709669]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c2179709669]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c2179709669]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c2179709669]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c2179709669]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c2179709669]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c2179709669]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c2179709669]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c2179709669]{border:1px solid #595959!important;background-color:#212125!important}</style><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.clearly-login-pop {
+  user-select: none;
+  position: fixed;
+  right: 32px;
+  top: 32px;
+  width: 350px;
+  border-radius: 16px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  z-index: 2147483648;
+  padding: 20px;
+}
+.clearly-login-pop-head {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.clearly-login-pop-head i {
+  cursor: pointer;
+}
+.clearly-login-pop-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+.clearly-login-pop .tcell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 50px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+.clearly-login-pop .tcell:first-child {
+  border-top: 0;
+}
+.clearly-login-pop .tcell .form-label {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.8);
+}
+.clearly-login-pop .tcell .form-label i {
+  margin-right: 10px;
+}
+.clearly-login-pop .tcell .form-label .value {
+  margin-left: 8px;
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.6);
+}
+.clearly-login-pop .tcell .form-group {
+  margin-bottom: 0;
+}
+.clearly-login-pop .btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+.clearly-login-pop .btn-submit {
+  height: 52px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  text-decoration: none;
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #333;
+  font-size: 13px;
+  height: 34px;
+  padding: 0 10px;
+}
+.clearly-login-pop input.account-input {
+  border-radius: 6px;
+  font-size: 13px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  height: 34px;
+  padding: 0 12px;
+  appearance: none;
+  background: none;
+  outline: none;
+  color: rgba(0, 0, 0, 0.9);
+  min-width: 200px;
+}
+</style><style type="text/css">#clearly-edit-pop {
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 8px;
+  padding: 5px 12px;
+  color: #fff;
+  font-size: 14px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  position: absolute;
+  z-index: 999999999;
+}
+#clearly-edit-pop .clearly-edit-pop-remove {
+  cursor: pointer;
+}
+#clearly-edit-pop:after {
+  content: '';
+  display: block;
+  border-style: solid;
+  border-width: 5px;
+  border-color: transparent;
+  border-top-color: rgba(0, 0, 0, 0.9);
+  position: absolute;
+  margin-left: -5px;
+  bottom: -10px;
+  left: 50%;
+}
+</style><style type="text/css">:root {
+  --color-yellow: #FFD76F;
+  --color-green: #34FFB6;
+  --color-black: rgba(0, 0, 0, 0.9);
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-icon: rgba(255, 255, 255, 0.6);
+  --color-icon-hover: rgba(255, 255, 255, 0.8);
+  --color-text-gray: rgba(255, 255, 255, 0.6);
+  --color-placeholder: rgba(255, 255, 255, 0.6);
+  --color-light-hover: rgba(255, 255, 255, 0.1);
+}
+.clearly-mark {
+  background-color: var(--color-yellow);
+  color: black;
+  cursor: pointer;
+}
+.clearly-image-collected {
+  border-left: 8px solid var(--color-yellow);
+}
+#clearly-image-popup-icon,
+#clearly-popup-icon {
+  background: #1C1A1A;
+  position: absolute;
+  border-radius: 8px;
+  border: 1px solid #C1C1C1;
+  cursor: pointer;
+  z-index: 2147483648;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s linear;
+}
+#clearly-image-popup-icon:hover,
+#clearly-popup-icon:hover {
+  background-color: #000;
+}
+#clearly-image-popup-icon .clearly-popup-icon-img,
+#clearly-popup-icon .clearly-popup-icon-img {
+  width: 32px;
+  height: 32px;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGrSURBVHgB7ZjRUcMwDIYVjgGyQbsBGSFswAbpJskGsEHYADbIMQHZIOkEhQmEfPZxIaRK5To2x+m700MTS9Xv2JZtAEVRFEVR/imImBuDDckgEC7RiqwgK8n2syY92Uj2SvaWZdno/A6Tth/0/Ali4nq5JjuhjJpsP3s2QExcAgOGQyzgFjyhPzNDpSPjxnjv7Oja3YEdYpvOi1Uu6PmOrGR8m1BfwFfAM5P8y4UxmiQCTM8yyQ+mhwWxuhQCOkZAK4xVRhWAv5e9OYUwpIl5ukaAdBXiEjRFqAc592BXpdHEACFSASXzzid58BT9zQ3I2DHvRkiAVEDaArSAVADHERIQUsAOEiAVIF4ltkYq4JN5J64BIZAK4Ja8PXjgimMl2YJ4YyrtSiUuQQj5HKaVGDc+gq7thTphrBx/bstF/l7Meuyqr0BtH2e+FcRg5SuYzVmx4p8vJB/vPIx24q0d4lu02+V84mN+12d84/T+RESB8puIczSQAgxzK9FAStCO58ZDyIAey+6mUEIPaA/870zSbcjEg10tLoF2Ahszp7U/t49SFEVRlOR8AQxUBgYyQX2vAAAAAElFTkSuQmCC');
+}
+#clearly-image-popup-icon .clearly-popup-text,
+#clearly-popup-icon .clearly-popup-text {
+  padding: 0 10px;
+  color: rgba(255, 255, 255, 0.8);
+}
+#clearly-video-icon {
+  cursor: pointer;
+  background: #2C2828;
+  display: inline-block;
+  align-items: center;
+  margin: 0 8px;
+  border-radius: 18px;
+  height: 36px;
+  position: relative;
+  box-sizing: border-box;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  transition: all 0.2s linear;
+}
+#clearly-video-icon:hover {
+  background-color: #000;
+}
+#clearly-video-icon .clearly-popup-icon-img {
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  margin-top: -12px;
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGrSURBVHgB7ZjRUcMwDIYVjgGyQbsBGSFswAbpJskGsEHYADbIMQHZIOkEhQmEfPZxIaRK5To2x+m700MTS9Xv2JZtAEVRFEVR/imImBuDDckgEC7RiqwgK8n2syY92Uj2SvaWZdno/A6Tth/0/Ali4nq5JjuhjJpsP3s2QExcAgOGQyzgFjyhPzNDpSPjxnjv7Oja3YEdYpvOi1Uu6PmOrGR8m1BfwFfAM5P8y4UxmiQCTM8yyQ+mhwWxuhQCOkZAK4xVRhWAv5e9OYUwpIl5ukaAdBXiEjRFqAc592BXpdHEACFSASXzzid58BT9zQ3I2DHvRkiAVEDaArSAVADHERIQUsAOEiAVIF4ltkYq4JN5J64BIZAK4Ja8PXjgimMl2YJ4YyrtSiUuQQj5HKaVGDc+gq7thTphrBx/bstF/l7Meuyqr0BtH2e+FcRg5SuYzVmx4p8vJB/vPIx24q0d4lu02+V84mN+12d84/T+RESB8puIczSQAgxzK9FAStCO58ZDyIAey+6mUEIPaA/870zSbcjEg10tLoF2Ahszp7U/t49SFEVRlOR8AQxUBgYyQX2vAAAAAElFTkSuQmCC');
+}
+#clearly-video-icon .clearly-popup-text {
+  padding-left: 32px;
+  padding-right: 12px;
+  font-family: sans-serif;
+  font-size: 14px;
+  line-height: 32px;
+  height: 32px;
+  color: #FFFFFF;
+}
+</style><style type="text/css">.tag-pane {
+  position: absolute;
+  width: 160px;
+  border-radius: 16px;
+  top: 40px;
+  right: 0;
+  padding-bottom: 8px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  z-index: 99999999;
+}
+.tag-pane .item {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+.tag-pane .item:hover {
+  cursor: pointer;
+  background-color: var(--color-hover);
+}
+.tag-pane .tag-search-input-container {
+  padding: 16px;
+}
+.tag-pane .tag-search-input {
+  display: block;
+  height: 35px;
+  line-height: 35px;
+  border: 1px solid var(--color-yellow);
+  padding-left: 12px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  width: 100%;
+  color: var(--color-text);
+  background-color: transparent;
+  outline: none;
+}
+.tag-pane .tag-search-input::placeholder {
+  color: var(--color-placeholder);
+}
+.tag-pane .icon-check,
+.tag-pane .icon-add {
+  font-size: 18px;
+  margin-right: 6px;
+  color: var(--color-icon);
+}
+.tag-pane .icon-checked {
+  color: var(--color-yellow);
+}
+</style><style type="text/css">.collect-pop {
+  position: fixed;
+  border: 1px solid var(--color-gray-border);
+  right: 32px;
+  top: 32px;
+  border-radius: 16px;
+  background-color: var(--color-black);
+  z-index: 2147483648;
+}
+.collect-pop .main {
+  height: 60px;
+  line-height: 60px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+.collect-pop .save {
+  padding: 0 20px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+.collect-pop .save .icon-success {
+  color: var(--color-green);
+  font-size: 24px;
+  margin-right: 8px;
+}
+.collect-pop .icon-tag {
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 24px;
+  margin-right: 20px;
+  color: var(--color-icon);
+}
+.collect-pop .icon-tag:hover {
+  color: var(--color-icon-hover);
+}
+.collect-pop .icon-more {
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--color-icon);
+}
+.collect-pop .icon-more:hover {
+  color: var(--color-icon-hover);
+}
+.collect-pop .read {
+  border-left: 1px solid var(--color-gray-border);
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.collect-pop .read:hover {
+  background: var(--color-hover);
+  cursor: pointer;
+}
+.collect-pop .icon-read {
+  font-size: 20px;
+  color: var(--color-yellow);
+}
+.collect-pop .tag-pane {
+  position: absolute;
+  width: 160px;
+  border-radius: 16px;
+  top: 75px;
+  right: 0;
+  padding-bottom: 8px;
+  overflow: hidden;
+  background-color: var(--color-black);
+}
+.collect-pop .tag-pane .item {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  white-space: nowrap;
+}
+.collect-pop .tag-pane .tag-search-input-container {
+  padding: 16px;
+}
+.collect-pop .tag-pane .tag-search-input {
+  display: block;
+  height: 35px;
+  line-height: 35px;
+  border: 1px solid var(--color-yellow);
+  padding-left: 12px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  width: 100%;
+  color: #fff;
+  background-color: transparent;
+}
+.collect-pop .tag-pane .tag-search-input::placeholder {
+  color: var(--color-placeholder);
+}
+.collect-pop .tag-pane .icon-check,
+.collect-pop .tag-pane .icon-add {
+  font-size: 18px;
+  margin-right: 6px;
+  color: var(--color-icon);
+}
+.collect-pop .tag-pane .icon-checked {
+  color: var(--color-yellow);
+}
+.collect-pop .tag-pane .item:hover {
+  cursor: pointer;
+  background-color: var(--color-hover);
+}
+.collect-pop .more-pane {
+  position: absolute;
+  width: 160px;
+  border-radius: 16px;
+  padding: 8px 0;
+  top: 75px;
+  right: 0;
+  background-color: var(--color-black);
+}
+.collect-pop .more-pane .item {
+  height: 30px;
+  line-height: 30px;
+  padding-left: 16px;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: var(--color-text-gray);
+}
+.collect-pop .more-pane .item:hover {
+  background: var(--color-hover);
+}
+.collect-pop .more-pane .item i {
+  color: var(--color-icon);
+  font-size: 16px;
+  margin-right: 6px;
+}
+</style><style type="text/css">
+.toast {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  z-index: 2147483647;
+  animation: fadeindown linear .2s;
+}
+
+.toast.hide {
+  animation: fadeoutup linear .2s;
+}
+
+@keyframes fadeindown {
+  from {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes fadeoutup {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+}
+
+.toast-message {
+  margin-top: 24px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(2px);
+  padding: 12px 14px;
+  color: #ffffff;
+  border-radius: 8px;
+  position: relative;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+</style><link rel="stylesheet" type="text/css" id="clearly-content-css" href="chrome-extension://endepdgnifiheflchpgeimpbfcjnalaf/assets/styles/frame.css"><link rel="stylesheet" type="text/css" id="clearly-remixin-icon" href="chrome-extension://endepdgnifiheflchpgeimpbfcjnalaf/assets/fonts/remixicon/remixicon.css"><link rel="stylesheet" type="text/css" id="clearly-remixin-icon-platform" href="chrome-extension://endepdgnifiheflchpgeimpbfcjnalaf/assets/fonts/remixicon/remixicon-edge.css"><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css" id="tts-styles">[data-tts-block-id].tts-active {background: rgba(206, 225, 255, 0.9) !important;} [data-tts-sentence-id].tts-active {background: rgba(0, 89, 191, 0.7) !important;}</style><link rel="stylesheet" href="./bpalgoritm0_files/light-en.css" id="light-en"><link rel="stylesheet" href="./bpalgoritm0_files/dark-en.css" id="dark-en"><link rel="stylesheet" href="./bpalgoritm0_files/light-en.css" id="light-en"><link rel="stylesheet" href="./bpalgoritm0_files/dark-en.css" id="dark-en"><link rel="stylesheet" href="./bpalgoritm0_files/light-en.css" id="light-en"><link rel="stylesheet" href="./bpalgoritm0_files/dark-en.css" id="dark-en"><link rel="stylesheet" href="./bpalgoritm0_files/light-en.css" id="light-en"><link rel="stylesheet" href="./bpalgoritm0_files/dark-en.css" id="dark-en"><link rel="stylesheet" href="./bpalgoritm0_files/light-en.css" id="light-en"><link rel="stylesheet" href="./bpalgoritm0_files/dark-en.css" id="dark-en"><link rel="stylesheet" href="./bpalgoritm0_files/light-en.css" id="light-en"><link rel="stylesheet" href="./bpalgoritm0_files/dark-en.css" id="dark-en"><link rel="stylesheet" href="./bpalgoritm0_files/light-en.css" id="light-en"><link rel="stylesheet" href="./bpalgoritm0_files/dark-en.css" id="dark-en"><link rel="stylesheet" href="./bpalgoritm0_files/light-en.css" id="light-en"><link rel="stylesheet" href="./bpalgoritm0_files/dark-en.css" id="dark-en"></head>
+<body class="skin-codinglife has-navbar mathjax2"><div id="MathJax_Message" style="display: none;"></div>
+    <a name="top"></a>
+        <div id="imagebar" class="imagebar-mobile imagebar-text-mobile formobile">
+                <a href="https://market.cnblogs.com/" onclick="countCreativeClicks(&#39;M2-阿里云-云大使&#39;)" rel="nofollow">
+                    <img src="./bpalgoritm0_files/35695-20241019093016581-1225084958.jpg" alt="" onload="countCreativeImpressionsOnMobile(&#39;M2-阿里云-云大使&#39;)">
+                    <span id="m2_impression" style="display:none"></span>
+                </a>
+        </div>
+    
+
+    
+
+    <!--done-->
+<div id="home">
+<div id="header">
+	<!--end: blogTitle 博客的标题和副标题 -->
+	<!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                <a id="cb_post_title_url" class="postTitle2 vertical-middle" href="https://www.cnblogs.com/wlzy/p/7751297.html" title="发布于 2017-10-29 21:19">
+    <span role="heading" aria-level="2">反向传播算法（过程及公式推导）</span>
+    
+
+</a><button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                <div id="cnblogs_post_body" class="blogpost-body blogpost-body-html">
+<h2><span style="font-size: 18pt">一、反向传播的由来</span><button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button></h2>
+<p>在我们开始DL的研究之前，需要把ANN—人工神经元网络以及bp算法做一个简单解释。<br>关于ANN的结构，我不再多说，网上有大量的学习资料，主要就是搞清一些名词：<br>输入层/输入神经元，输出层/输出神经元，隐层/隐层神经元，权值，偏置，激活函数<br><br>接下来我们需要知道ANN是怎么训练的，假设ANN网络已经搭建好了，在所有应用问题中（不管是网络结构，训练手段如何变化）我们的目标是不会变的，那就是网络的权值和偏置最终都变成一个最好的值，这个值可以让我们由输入可以得到理想的输出，于是问题就变成了y=f(x，w，b)（x是输入，w是权值，b为偏置，所有这些量都可以有多个，比如多个x1，x2，x3……最后f()就好比我们的网络它一定可以用一个函数来表示，我们不需要知道f(x)具体是怎样的函数，从小我们就认为只要是函数就一定要是可表示的，像f(x)=sin(x)一样，但是请摈弃这样的错误观念，我们只需要知道一系列的w和b决定了一个函数f（x），这个函数让我们由输入可以计算出合理的y）<br><br>最后的目标就变成了尝试不同的w，b值，使得最后的y=f（x）无限接近我们希望得到的值t<br><br>但是这个问题依然很复杂，我们把它简化一下，让（y-t）^2的值尽可能的小。于是原先的问题化为了C（w，b）=（f（x，w，b）-t）^2取到一个尽可能小的值。这个问题不是一个困难的问题，不论函数如何复杂，如果C降低到了一个无法再降低的值，那么就取到了最小值（假设我们不考虑局部最小的情况）</p>
+<p>如何下降？数学告诉我们对于一个多变量的函数f(a,b,c,d,……)而言，我们可以求得一个向量，它称作该函数的梯度，要注意的是，梯度是一个方向向量，它表示这个函数在该点变化率最大的方向（这个定理不详细解释了，可以在高等数学教材上找到）于是C（w，b）的变化量ΔC就可以表示成<img src="./bpalgoritm0_files/20161105213621530" alt="" class="medium-zoom-image"></p>
+<p>其中</p>
+<p><img src="./bpalgoritm0_files/20161105213727954" alt="" class="medium-zoom-image">是该点上的微小变化，我们可以随意指定这些微小变化，只需要保证ΔC&lt;0就可以了，但是为了更快的下降，我们为何不选在梯度方向上做变化呢？</p>
+<p>事实上，梯度下降的思想就是这样考虑的，我们使得<img src="./bpalgoritm0_files/20161105213941569" alt="">从而保证C一直递减，而对于w来说只要每次更新<img src="./bpalgoritm0_files/20161105214116522" alt="">即可。<br><br>ok，到这里，似乎所有的问题都解决了，让我们重新整理一下思绪，我们将问题转化了很多步：<br>网络权值偏置更新问题 ==&gt; f（x，w，b）的结果逼近t ==&gt; C（w，b）=（f（x，w，b）-t）^2取极小值问题 ==&gt; C（w，b）按梯度下降问题 ==&gt;取到极小值，网络达到最优<br><br>千万别忘了一点！！推导基于一个前提：我们已经提前知道了当前点的梯度。然而事实并非如此！！<br>这个问题困扰了NN研究者多年，1969年M.Minsky和S.Papert所著的《感知机》一书出版，它对单层神经网络进行了深入分析，并且从数学上证明了这种网络功能有限，甚至不能解决象"异或"这样的简单逻辑运算问题。同时，他们还发现有许多模式是不能用单层网络训练的，而对于多层网络则没有行之有效的低复杂度算法，最后他们甚至认为神经元网络无法处理非线性问题。然而于1974年，Paul Werbos首次给出了如何训练一般网络的学习算法—back propagation。这个算法可以高效的计算每一次迭代过程中的梯度，让以上我们的推导得以实现！！<br>不巧的是，在当时整个人工神经网络社群中无人知晓Paul所提出的学习算法。直到80年代中期，BP算法才重新被David Rumelhart、Geoffrey Hinton及Ronald Williams、David Parker和Yann LeCun独立发现，并获得了广泛的注意，引起了人工神经网络领域研究的第二次热潮。</p>
+<p>&nbsp;</p>
+<h2><span style="font-size: 18pt"><a name="t1"></a>二、原理的引入</span><button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button></h2>
+<p>
+上面已经提到，所谓反向传播，就是计算梯度的方法。对于反向传播，先不急着介绍它的原理，很多文章直接引入公式，反而使得我们很难去理解。这里先引入知乎上某位大神的回答。</p>
+<p>&nbsp;</p>
+<p>来源：知乎<a href="https://www.zhihu.com/question/27239198?rf=24827633" target="_blank" rel="noopener nofollow">https://www.zhihu.com/question/27239198?rf=24827633</a></p>
+<p><img src="./bpalgoritm0_files/20161105194353473" alt="" class="medium-zoom-image"></p>
+<p>假设输入a=2，b=1，在这种情况下，我们很容易求出相邻节点之间的偏导关系</p>
+<p><img src="./bpalgoritm0_files/20161105194500114" alt="" class="medium-zoom-image"></p>
+<p>利用链式法则：</p>
+<p><img src="./bpalgoritm0_files/equation" alt="\frac{\partial e}{\partial a}=\frac{\partial e}{\partial c}\cdot \frac{\partial c}{\partial a}">以及<img src="./bpalgoritm0_files/equation(1)" alt="\frac{\partial e}{\partial b}=\frac{\partial e}{\partial c}\cdot \frac{\partial c}{\partial b}+\frac{\partial e}{\partial d}\cdot \frac{\partial d}{\partial b}"></p>
+<p>&nbsp;</p>
+<p><img src="./bpalgoritm0_files/equation(2)" alt="\frac{\partial e}{\partial a}">的值等于从a到e的路径上的偏导值的乘积，而<img src="./bpalgoritm0_files/equation(3)" alt="\frac{\partial e}{\partial b}">的值等于从b到e的路径1(b-c-e)上的偏导值的乘积加上路径2(b-d-e)上的偏导值的乘积。也就是说，对于上层节点p和下层节点q，要求得<img src="./bpalgoritm0_files/equation(4)" alt="\frac{\partial p}{\partial q}">，需要找到从q节点到p节点的所有路径，并且对每条路径，求得该路径上的所有偏导数之乘积，然后将所有路径的 “乘积” 累加起来才能得到<img src="./bpalgoritm0_files/equation(4)" alt="\frac{\partial p}{\partial q}">的值。</p>
+<p>这种情况下偏导很容易求得，因为我们已经知道网络的函数关系式，e=（a+b）*（b+1），这是一个没有权值干预，已知输入与输出之间关系的网络。实际当中我们只是知道e与输出之间的关系，就是上面说的C=（y-t）^2，而且会有成千上万的权值和偏置干预求导的过程。那么换个思路，能不能求输出对结果的偏导呢？</p>
+<p>再利用上图的关系。节点c对e偏导2并将结果堆放起来，节点d对e偏导3并将结果堆放起来，至此第二层完毕，求出各节点总堆放量并继续向下一层发送。节点c向a发送2*1并对堆放起来，节点c向b发送2*1并堆放起来，节点d向b发送3*1并堆放起来，至此第三层完毕，节点a堆放起来的量为2，节点b堆放起来的量为2*1+3*1=5, 即顶点e对b的偏导数为5。简要的概括，就是从最上层的节点e开始，以层为单位进行处理。对于e的下一层的所有子节点，将1乘以e到某个节点路径上的偏导值，并将结果“堆放”在该子节点中。等e所在的层按照这样传播完毕后，第二层的每一个节点都“堆放"些值，然后我们针对每个节点，把它里面所有“堆放”的值求和，就得到了顶点e对该节点的偏导。然后将这些第二层的节点各自作为起始顶点，初始值设为顶点e对它们的偏导值，以"层"为单位重复上述传播过程，即可求出顶点e对每一层节点的偏导数。</p>
+<h2><span style="font-size: 18pt"><a name="t2"></a>三、一个很好的例子</span><button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button></h2>
+<div>现在，我们再把权值考虑进去，以下是一个很好的例子，有助于我们去理解反向传播</div>
+<div>来源：Charlotte77的博客<a href="http://www.cnblogs.com/charlotte77/p/5629865.html" target="_blank">http://www.cnblogs.com/charlotte77/p/5629865.html</a></div>
+<div>
+<p>假设，你有这样一个网络层：</p>
+<p><img src="./bpalgoritm0_files/20161106112715527" alt="" class="medium-zoom-image"></p>
+<p>第一层是输入层，包含两个神经元i1，i2，和截距项b1；第二层是隐含层，包含两个神经元h1,h2和截距项b2，第三层是输出o1,o2，每条线上标的wi是层与层之间连接的权重，激活函数我们默认为sigmoid函数。</p>
+<p>　　现在对他们赋上初值，如下图：</p>
+<p><img src="./bpalgoritm0_files/20161106112636229" alt="" class="medium-zoom-image"></p>
+<p>　　其中，输入数据 &nbsp;i1=0.05，i2=0.10;</p>
+<p>　　　　　输出数据 o1=0.01,o2=0.99;</p>
+<p>　　　　　初始权重 &nbsp;w1=0.15,w2=0.20,w3=0.25,w4=0.30;</p>
+<p>　　　　　　　　　 &nbsp;w5=0.40,w6=0.45,w7=0.50,w8=0.88</p>
+<p>&nbsp;</p>
+<p>　　目标：给出输入数据i1,i2(0.05和0.10)，使输出尽可能与原始输出o1,o2(0.01和0.99)接近。</p>
+<p>&nbsp;</p>
+<p>　　Step 1 前向传播</p>
+<p>　　1.输入层----&gt;隐含层：</p>
+<p>　　计算神经元h1的输入加权和：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630142915359-294460310.png" alt="" width="366" height="82" class="medium-zoom-image"></p>
+<p>&nbsp;</p>
+<p>神经元h1的输出o1:(此处用到激活函数为sigmoid函数)：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630150115390-1035378028.png" alt="" width="369" height="55" class="medium-zoom-image"></p>
+<p>&nbsp;</p>
+<p>同理，可计算出神经元h2的输出o2：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630150244265-1128303244.png" alt="" width="334" height="32" class="medium-zoom-image"></p>
+<p>2.隐含层----&gt;输出层：</p>
+<p>　　计算输出层神经元o1和o2的值：</p>
+<p>　　<img src="./bpalgoritm0_files/853467-20160630150517109-389457135.png" alt="" width="592" height="141" class="medium-zoom-image"><img src="./bpalgoritm0_files/853467-20160630150638390-1210364296.png" alt="" width="355" height="48" class="medium-zoom-image"></p>
+<p>&nbsp;</p>
+<p>这样前向传播的过程就结束了，我们得到输出值为[0.75136079 , 0.772928465]，与实际值[0.01 , 0.99]相差还很远，现在我们对误差进行反向传播，更新权值，重新计算输出。</p>
+<p>&nbsp;Step 2 反向传播</p>
+<p>1.计算总误差</p>
+<p>总误差：(square error)</p>
+<p><img src="./bpalgoritm0_files/853467-20160630151201812-1014280864.png" alt="" width="313" height="66" class="medium-zoom-image"></p>
+<p>但是有两个输出，所以分别计算o1和o2的误差，总误差为两者之和：<img src="./bpalgoritm0_files/853467-20160630151457593-1250510503.png" alt="" width="606" height="58" class="medium-zoom-image"><img src="./bpalgoritm0_files/853467-20160630151508999-1967746600.png" alt="" width="516" height="50" class="medium-zoom-image"><img src="./bpalgoritm0_files/853467-20160630151516093-1257166735.png" alt="" width="549" height="51" class="medium-zoom-image"></p>
+<p>&nbsp;</p>
+<p>2.隐含层----&gt;输出层的权值更新：</p>
+<p>以权重参数w5为例，如果我们想知道w5对整体误差产生了多少影响，可以用整体误差对w5求偏导求出：（链式法则）<img src="./bpalgoritm0_files/853467-20160630151916796-1001638091.png" alt="" width="503" height="77" class="medium-zoom-image"></p>
+<p>下面的图可以更直观的看清楚误差是怎样反向传播的：</p>
+<p>&nbsp;</p>
+<div><img alt=""></div>
+<div><img alt=""></div>
+
+
+<img src="./bpalgoritm0_files/20161106112604072" alt="" class="medium-zoom-image"><br>
+<p>&nbsp;</p>
+<p>现在我们来分别计算每个式子的值：</p>
+<p>计算<img src="./bpalgoritm0_files/853467-20160630152206781-7976168.png" alt="" width="58" height="47">：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630152258437-1960839452.png" alt="" width="523" height="140" class="medium-zoom-image"></p>
+<p>计算<img src="./bpalgoritm0_files/853467-20160630152417109-711077078.png" alt="" width="64" height="53">：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630152511937-1667481051.png" alt="" width="523" height="85" class="medium-zoom-image"></p>
+<p>（这一步实际上就是对sigmoid函数求导，比较简单，可以自己推导一下）</p>
+<p>&nbsp;</p>
+<p>计算<img src="./bpalgoritm0_files/853467-20160630152625593-2083321635.png" alt="" width="58" height="50">：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630152658109-214239362.png" alt="" width="495" height="97" class="medium-zoom-image"></p>
+<p>最后三者相乘：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630152811640-888140287.png" alt="" width="535" height="88" class="medium-zoom-image"></p>
+<p>这样我们就计算出整体误差E(total)对w5的偏导值。</p>
+<p>回过头来再看看上面的公式，我们发现：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630153103187-515052589.png" alt="" width="459" height="52" class="medium-zoom-image"></p>
+<p>为了表达方便，用<img src="./bpalgoritm0_files/853467-20160630153202812-585186566.png" alt="" width="19" height="25">来表示输出层的误差：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630153251234-1144531293.png" alt="" width="459" height="99" class="medium-zoom-image"></p>
+<p>因此，整体误差E(total)对w5的偏导公式可以写成：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630153405296-436656179.png" alt="" width="461" height="60" class="medium-zoom-image"></p>
+<p>如果输出层误差计为负的话，也可以写成：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630153514734-1544628024.png" alt="" width="461" height="68" class="medium-zoom-image"></p>
+<p>最后我们来更新w5的值：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630153614374-1624035276.png" alt="" width="667" height="54" class="medium-zoom-image"></p>
+<p>（其中，<img src="./bpalgoritm0_files/853467-20160630153700093-743859667.png" alt="" width="13" height="26">是学习速率，这里我们取0.5）</p>
+<p>同理，可更新w6,w7,w8:</p>
+<p><img src="./bpalgoritm0_files/853467-20160630153807624-1231975059.png" alt="" width="592" height="169" class="medium-zoom-image"></p>
+<p>&nbsp;</p>
+<p>3.隐含层----&gt;隐含层的权值更新：</p>
+<p>　方法其实与上面说的差不多，但是有个地方需要变一下，在上文计算总误差对w5的偏导时，是从out(o1)----&gt;net(o1)----&gt;w5,但是在隐含层之间的权值更新时，是out(h1)----&gt;net(h1)----&gt;w1,而out(h1)会接受E(o1)和E(o2)两个地方传来的误差，所以这个地方两个都要计算。</p>
+<p>&nbsp;<img src="./bpalgoritm0_files/853467-20160630154317562-311369571.png" alt="" width="485" height="400" class="medium-zoom-image"></p>
+<p>&nbsp;</p>
+<p>计算<img src="./bpalgoritm0_files/853467-20160630154712202-1906007645.png" alt="" width="53" height="39">：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630154758531-934861299.png" alt="" width="547" height="51" class="medium-zoom-image"></p>
+<p>先计算<img src="./bpalgoritm0_files/853467-20160630154958296-1922097086.png" alt="" width="62" height="51">：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630155015546-1106216279.png" alt="" width="340" height="48" class="medium-zoom-image"></p>
+<p><img src="./bpalgoritm0_files/853467-20160630155036406-964647962.png" alt="" width="530" height="47" class="medium-zoom-image"><img src="./bpalgoritm0_files/853467-20160630155117656-1905928379.png" alt="" width="345" height="74" class="medium-zoom-image"><img src="./bpalgoritm0_files/853467-20160630155158468-157032005.png" alt="" width="527" height="51" class="medium-zoom-image"></p>
+<p>同理，计算出：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630155310937-2103938446.png" alt="" width="201" height="42" class="medium-zoom-image"></p>
+<p>两者相加得到总值：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630155435218-396769942.png" alt="" width="608" height="62" class="medium-zoom-image"></p>
+<p>再计算<img src="./bpalgoritm0_files/853467-20160630155555562-1422254830.png" alt="" width="62" height="43">：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630155628046-229505495.png" alt="" width="601" height="100" class="medium-zoom-image"></p>
+<p>再计算<img src="./bpalgoritm0_files/853467-20160630155731421-239852713.png" alt="" width="57" height="47">：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630155706437-964861747.png" alt="" width="509" height="90" class="medium-zoom-image"></p>
+<p>最后，三者相乘：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630155827718-189457408.png" alt="" width="632" height="110" class="medium-zoom-image"></p>
+<p>&nbsp;为了简化公式，用sigma(h1)表示隐含层单元h1的误差：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630160345281-679307550.png" alt="" width="540" height="183" class="medium-zoom-image"></p>
+<p>最后，更新w1的权值：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630160523437-1906004593.png" alt="" width="567" height="48" class="medium-zoom-image"></p>
+<p>同理，额可更新w2,w3,w4的权值：</p>
+<p><img src="./bpalgoritm0_files/853467-20160630160603484-1471434475.png" alt="" width="517" height="141" class="medium-zoom-image"></p>
+<p>这样误差反向传播法就完成了，最后我们再把更新的权值重新计算，不停地迭代，在这个例子中第一次迭代之后，总误差E(total)由0.298371109下降至0.291027924。迭代10000次后，总误差为0.000035085，输出为[0.015912196,0.984065734](原输入为[0.01,0.99]),证明效果还是不错的</p>
+
+
+</div>
+<h2><span style="font-size: 18pt"><a name="t3"></a>四、最一般的情况</span><button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button></h2>
+<h2><a name="t4"></a><img src="./bpalgoritm0_files/20160401202509000" alt="" width="320" height="240" class="medium-zoom-image"></h2>
+<div>
+<div>&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;上图是一个三层人工神经网络，layer1至layer3分别是输入层、隐藏层和输出层。如图，先定义一些变量：</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img src="./bpalgoritm0_files/20161106115101285" alt="">表示第l-1层的第<img alt="">k个神经元连接到第<img alt="">l层的第<img alt="">j个神经元的权重；</div>
+<div><img alt="">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img src="./bpalgoritm0_files/20161106115210841" alt="">表示第<img alt="">l层的第<img alt="">j个神经元的偏置；</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img alt=""><img src="./bpalgoritm0_files/20161106115642237" alt="">表示第<img alt="">l层的第<img alt="">j个神经元的输入，即<img alt="">：</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img src="./bpalgoritm0_files/20161106120152901" alt=""></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img alt=""><img src="./bpalgoritm0_files/20161106115859193" alt="">表示第l<img alt="">层的第<img alt="">j个神经元的输出，即<img alt="">：</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img src="./bpalgoritm0_files/20161106120310262" alt="" class="medium-zoom-image"></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;其中<img src="./bpalgoritm0_files/20161106115344889" alt="">表示激活函数。</div>
+<div><img alt="">L表示神经网络的最大层数，也可以理解为输出层。</div>
+<div>
+<div>将第l层第<img alt="">j个神经元中产生的错误（即实际值与预测值之间的误差）定义为：</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img src="./bpalgoritm0_files/20161106120448077" alt=""></div>
+<div>代价函数，依然用C来表示<img alt=""></div>
+
+
+</div>
+
+
+</div>
+<div><img src="./bpalgoritm0_files/20161105204613371" alt="" class="medium-zoom-image"></div>
+<div>&nbsp;</div>
+<p>以上4个方程中，第一个方程其实不难理解，就是求输出对估价函数C的偏导。</p>
+<p>唯一比较困难的，就是第二个方程，它给出了根据下一层的错误量δl+1计算δl的等式。为证明该等式，我们先依据δkl+1=∂C/∂zkl+1重新表达下等式δlj =∂C/∂zlj。这里可以应用链式法则：</p>
+<p>
+<img src="./bpalgoritm0_files/20161105211313625" alt="" class="medium-zoom-image"></p>
+<p>在最后一行，我们互换了下表达式右侧的两项，并取代了 δkl+1的定义。为了对最后一行的第一项求值，注意：<img src="./bpalgoritm0_files/20161105212806767" alt="" class="medium-zoom-image"><br>作微分，我们得到<br><img src="./bpalgoritm0_files/20161105212812627" alt=""><br>代回 (42) 我们得到<br><img src="./bpalgoritm0_files/20161105212818472" alt=""><br>&nbsp;这就是以分量形式呈现的 (BP2)。后两式在完成了BP2证明之后就不太难了，留给读者来证明。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>四、<strong><span style="font-size: 18pt">证明</span></strong><button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button></h2>
+<div>反向传播算法（Backpropagation）是目前用来训练人工神经网络（Artificial Neural Network，ANN）的最常用且最有效的算法。其主要思想是：</div>
+<div>（1）将训练集数据输入到ANN的输入层，经过隐藏层，最后达到输出层并输出结果，这是ANN的前向传播过程；</div>
+<div>（2）由于ANN的输出结果与实际结果有误差，则计算估计值与实际值之间的误差，并将该误差从输出层向隐藏层反向传播，直至传播到输入层；</div>
+<div>（3）在反向传播的过程中，根据误差调整各种参数的值；不断迭代上述过程，直至收敛。</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;反向传播算法的思想比较容易理解，但具体的公式则要一步步推导，因此本文着重介绍公式的推导过程。</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<h1><span style="font-size: 14pt"><a name="t0"></a><strong>1. 变量定义</strong></span><button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button></h1>
+<div><img src="./bpalgoritm0_files/20160401202509000" alt="" width="320" height="240" class="medium-zoom-image"></div>
+<div>&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;上图是一个三层人工神经网络，layer1至layer3分别是输入层、隐藏层和输出层。如图，先定义一些变量：</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img src="./bpalgoritm0_files/20160401202738142" alt="">表示第<img src="./bpalgoritm0_files/20160401202834876" alt=""><img alt="">层的第<img alt=""><img src="./bpalgoritm0_files/20160401202850705" alt="">个神经元连接到第<img alt=""><img src="./bpalgoritm0_files/20160401202901392" alt="">层的第<img alt=""><img src="./bpalgoritm0_files/20160401202912017" alt="">个神经元的权重；</div>
+<div><img alt="">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img src="./bpalgoritm0_files/20160401202925814" alt="">表示第<img alt=""><img src="./bpalgoritm0_files/20160401202901392" alt="">层的第<img alt=""><img src="./bpalgoritm0_files/20160401202912017" alt="">个神经元的偏置；</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img alt=""><img src="./bpalgoritm0_files/20160401202949221" alt="">表示第<img alt=""><img src="./bpalgoritm0_files/20160401202901392" alt="">层的第<img alt=""><img src="./bpalgoritm0_files/20160401202912017" alt="">个神经元的输入，即<img alt="">：</div>
+<div><img src="./bpalgoritm0_files/20160401203046815" alt="" width="200" height="36"></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img alt=""><img src="./bpalgoritm0_files/20160401203055737" alt="">表示第<img src="./bpalgoritm0_files/20160401202901392" alt=""><img alt="">层的第<img alt=""><img src="./bpalgoritm0_files/20160401202912017" alt="">个神经元的输出，即<img alt="">：</div>
+<div><img src="./bpalgoritm0_files/20160401203135690" alt="" width="220" height="60"></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;其中<img src="./bpalgoritm0_files/20160401203156534" alt=""><img alt="">表示激活函数。</div>
+<div>&nbsp;</div>
+<h1><span style="font-size: 14pt"><a name="t1"></a><strong>2. 代价函数</strong></span><button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button></h1>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; 代价函数被用来计算ANN输出值与实际值之间的误差。常用的代价函数是二次代价函数（Quadratic cost function）：</div>
+<div><img src="./bpalgoritm0_files/20160401203231972" alt="" width="230" height="50" class="medium-zoom-image"></div>
+<div><img alt=""></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;其中，<img src="./bpalgoritm0_files/20160401203246065" alt=""><img alt="">表示输入的样本，<img alt=""><img src="./bpalgoritm0_files/20160401203254284" alt="">表示实际的分类，<img alt=""><img src="./bpalgoritm0_files/20160401203304753" alt="">表示预测的输出，<img alt=""><img src="./bpalgoritm0_files/20160401203313706" alt="">表示神经网络的最大层数。</div>
+<div>&nbsp;</div>
+<h1><span style="font-size: 14pt"><a name="t2"></a><strong>3. 公式及其推导</strong></span><button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button></h1>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; 本节将介绍反向传播算法用到的4个公式，并进行推导。<strong>如果不想了解公式推导过程，请直接看第4节的算法步骤。</strong></div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;首先，将第<img src="./bpalgoritm0_files/20160401202901392" alt=""><img alt="">层第<img alt=""><img src="./bpalgoritm0_files/20160401202912017" alt="">个神经元中产生的错误（即实际值与预测值之间的误差）定义为：</div>
+<div><img src="./bpalgoritm0_files/20160401203433129" alt="" width="90" height="58"><img alt=""></div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; 本文将以一个输入样本为例进行说明，此时代价函数表示为：</div>
+<div><img src="./bpalgoritm0_files/20160401203458879" alt="" width="300" height="56" class="medium-zoom-image"></div>
+<div><img alt=""></div>
+<div>&nbsp;</div>
+<div><strong>公式1（计算最后一层神经网络产生的错误）：</strong></div>
+<div><strong>&nbsp;</strong></div>
+<div><img src="./bpalgoritm0_files/20160401203521035" alt="" width="180" height="36"></div>
+<div>&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;其中，<img alt=""><img src="./bpalgoritm0_files/20160401203529707" alt="">表示Hadamard乘积，用于矩阵或向量之间点对点的乘法运算。公式1的推导过程如下：</div>
+<div><img src="./bpalgoritm0_files/20160401203552879" alt="" width="370" height="150" class="medium-zoom-image"></div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div><strong>公式2（由后往前，计算每一层神经网络产生的错误）：</strong></div>
+<div><strong>&nbsp;</strong></div>
+<div><img src="./bpalgoritm0_files/20160401203604942" alt="" width="280" height="40" class="medium-zoom-image"></div>
+<div>&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;推导过程：</div>
+<div><img alt=""><img src="./bpalgoritm0_files/20161230105754424" alt="" width="420" height="250" class="medium-zoom-image"></div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div><strong>公式3（计算权重的梯度）：</strong></div>
+<div><strong>&nbsp;</strong></div>
+<div><img src="./bpalgoritm0_files/20160401203624973" alt="" width="130" height="66"></div>
+<div>&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;推导过程：</div>
+<div><img src="./bpalgoritm0_files/20160401203634161" alt="" width="410" height="70" class="medium-zoom-image"></div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div><strong>公式4（计算偏置的梯度）：</strong></div>
+<div><strong>&nbsp;</strong></div>
+<div><img src="./bpalgoritm0_files/20160401203641989" alt="" width="80" height="65"></div>
+<div>&nbsp;</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;推导过程：</div>
+<div><img src="./bpalgoritm0_files/20160401203656833" alt="" width="350" height="70" class="medium-zoom-image"></div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<h1><span style="font-size: 14pt"><a name="t3"></a><strong>4. 反向传播算法伪代码</strong></span><button class="cnblogs-toc-button" title="显示目录导航" aria-expanded="false"></button></h1>
+<div>&nbsp;</div>
+<div>
+<ul>
+<li><strong>输入训练集</strong></li>
+
+</ul>
+<div><strong>&nbsp;</strong></div>
+<ul>
+<li><strong>对于训练集中的每个样本x，设置输入层（Input layer）对应的激活值<img alt=""><img src="./bpalgoritm0_files/20160401203715973" alt="">：</strong>
+<ul>
+<li><strong>前向传播：</strong></li>
+
+</ul>
+
+</li>
+
+</ul>
+<div><img src="./bpalgoritm0_files/20160401203739849" alt="">，&nbsp;<img src="./bpalgoritm0_files/20160401203806927" alt=""></div>
+<ul>
+<ul>
+<li><strong>计算输出层产生的错误：</strong></li>
+
+</ul>
+
+</ul>
+<div><img src="./bpalgoritm0_files/20160401203820380" alt=""></div>
+<ul>
+<ul>
+<li><strong>反向传播错误：<img alt=""></strong></li>
+
+</ul>
+
+</ul>
+<div><img src="./bpalgoritm0_files/20160401203833583" alt=""></div>
+<div>&nbsp;</div>
+<ul>
+<li><strong>使用梯度下降（gradient descent），训练参数：</strong></li>
+
+</ul>
+<div><strong>&nbsp;</strong></div>
+<div>&nbsp;<img src="./bpalgoritm0_files/20160401203848037" alt="" class="medium-zoom-image"></div>
+<div>&nbsp;</div>
+<div><img src="./bpalgoritm0_files/20160401203859349" alt=""></div>
+
+</div>
+</div>
+<div class="clear"></div>
+
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date" data-last-update-days="2534.9344865428066" data-date-created="BlogServer.Application.Dto.BlogPost.BlogPostDto" data-date-updated="2017-12-10 20:07" aria-expanded="false">2017-10-29 21:19</span>&nbsp;
+<a href="https://www.cnblogs.com/wlzy">ZYVV</a>&nbsp;
+阅读(<span id="post_view_count">111193</span>)&nbsp;
+评论(<span id="post_comment_count">9</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=7751297" rel="nofollow">编辑</a>&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(7751297);return false;">收藏</a>&nbsp;
+<a href="javascript:void(0)" onclick="reportManager.report({ currentUserId: &#39;&#39;, targetType: &#39;blogPost&#39;, targetId: &#39;7751297&#39;, targetLink: &#39;https://www.cnblogs.com/wlzy/p/7751297.html&#39;, title: &#39;反向传播算法（过程及公式推导）&#39; })">举报</a>
+</div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+<script>
+    var cb_entryId = 7751297, cb_entryCreatedDate = '2017-10-29 21:19', cb_postType = 1, cb_postTitle = '反向传播算法（过程及公式推导）';
+    var allowComments = true, cb_blogId = 307187, cb_blogApp = 'wlzy', cb_blogUserGuid = 'ed452cf8-2c72-e111-aa3f-842b2b196315';
+    mermaidRender.render()
+    markdown_highlight()
+    zoomManager.apply("#cnblogs_post_body img:not(.code_img_closed):not(.code_img_opened)");    
+</script>
+<a id="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+	<div id="sideBar">
+		<!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright © 2024 ZYVV
+<br><span id="poweredby">Powered by .NET 9.0 on Kubernetes</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+
+    
+
+    <input type="hidden" id="antiforgery_token" value="CfDJ8DfB03_iObVLoqH7ndAeeDjIuacV-AWW2w1fbc0q-TlS_rKAu3huBrw2NIlFzm_MJvQKalAwYt0COxeCBcRjxUZogacE57Uxu7jlGksPp9ioXzKYHXIAUekYSBCrgkWKNfYbG67-9d6oc40lmIZ437g">
+    <script async="" src="./bpalgoritm0_files/js"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-M95P3TTWJZ');
+</script>
+<script defer="" src="./bpalgoritm0_files/hm.js.下载"></script>
+
+
+<div style="z-index: 998; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); display: none; flex-direction: column; align-items: center; justify-content: center">
+<div style="background: #fff;padding: 30px; margin: 30px; border-radius: 16px;">
+  <div style="width: 200px; height: 200px; background: rgba(255, 255, 255, 0.8); position: absolute; top: -100px; right: -100px; border-radius: 100px"></div>
+  <div style="text-align: center; font-size: 18px; margin-bottom: 10px;">点击右上角即可分享</div>
+  <img src="./bpalgoritm0_files/35695-20230906145857937-1471873834.gif" alt="微信分享提示">
+</div>   
+    </div></body><eusoft-chrome-extension-root-en _nghost-ng-c4173660981="" ng-version="16.2.12"><template _ngcontent-ng-c4173660981=""></template><!----><!----><app-word-hint-render _ngcontent-ng-c4173660981="" _nghost-ng-c3632246835=""><template _ngcontent-ng-c3632246835=""></template><!----><!----></app-word-hint-render><app-capture-word _ngcontent-ng-c4173660981="" class="eusoft-chrome-extension-capture-word-container ng-tns-c1384486089-0 ng-star-inserted"><template shadowrootmode="open"><style>.eudic-tippy-content-container[_ngcontent-ng-c4173660981]{max-width:250px!important}</style><style>.eusoft-eudic-chrome-extension-explain-icon-class{position:fixed!important;visibility:visible!important;z-index:2147483646!important}.eusoft-eudic-chrome-extension-explain-popover-container-class{position:relative!important}.eusoft-eudic-chrome-extension-explain-container-class{position:fixed!important;visibility:visible!important;min-width:100px;height:auto!important;z-index:2147483646!important}.eudic-explain-content-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2147483647}.eusoft-eudic-chrome-extension-explain-container-border-radius-class{box-shadow:0 2px 5px 1px #403c4329!important;border-radius:10px!important;overflow:hidden!important;background-color:#fff!important;box-sizing:border-box}.eudic-explain-resizer{z-index:2147483646!important;opacity:1;width:16px;height:16px;position:absolute}.eudic-explain-resizer-right{top:0;right:-8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom{bottom:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-top{top:-8px;left:0;width:100%;cursor:ns-resize}.eudic-explain-resizer-left{top:0;left:-8px;height:100%;cursor:ew-resize}.eudic-explain-resizer-bottom-right{right:-8px;bottom:-8px;cursor:nwse-resize}.eudic-explain-resizer-bottom-left{left:-8px;bottom:-8px;cursor:nesw-resize}.eudic-explain-content-inner{position:relative}.eudic-toolbar-container{cursor:move;display:flex;flex-direction:row;align-items:center;padding-left:12px;padding-right:12px;justify-content:space-between}.eudic-toolbar-left-actions,.eudic-toolbar-right-actions{display:flex;flex-direction:row;align-items:center}.eudic-toolbar-container-title{font-size:14px;font-family:Helvetica;-webkit-user-select:none;user-select:none;line-height:1;word-break:break-word}.eudic-toolbar-container-title-icon{width:16px;height:16px;margin-right:8px}.eudic-toolbar-right-lock-button{margin-right:16px;cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-right-close-button{cursor:pointer;width:16px;height:16px;display:flex;align-items:center}.eudic-toolbar-inner-icon{width:16px;height:16px;display:flex}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container{background-color:#f7f9fc}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=light] .eudic-toolbar-container-title{color:#202124}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eusoft-eudic-chrome-extension-explain-container-border-radius-class,.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container{background-color:#141414}.eusoft-eudic-chrome-extension-explain-popover-container-class[data-content-script-theme=dark] .eudic-toolbar-container-title{color:#e6e6e6}
+</style><style>.eusoft-eudic-translate-failed-container[_ngcontent-ng-c2179709669]{position:fixed!important;bottom:50px!important;right:50px!important;border-radius:5px!important;box-shadow:0 6px 24px #00000014!important;z-index:2147483647!important}.eusoft-eudic-translate-failed-content-script[_ngcontent-ng-c2179709669]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-en   [_nghost-ng-c2179709669]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c2179709669]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-fr   [_nghost-ng-c2179709669]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c2179709669]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-de   [_nghost-ng-c2179709669]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c2179709669]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.light-es   [_nghost-ng-c2179709669]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c2179709669]{border:1px solid #E8E8E8!important;background-color:#f8fafe!important}html.dark-en   [_nghost-ng-c2179709669]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c2179709669]{border:1px solid #595959!important;background-color:#212125!important}html.dark-fr   [_nghost-ng-c2179709669]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c2179709669]{border:1px solid #595959!important;background-color:#212125!important}html.dark-de   [_nghost-ng-c2179709669]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c2179709669]{border:1px solid #595959!important;background-color:#212125!important}html.dark-es   [_nghost-ng-c2179709669]   .eusoft-eudic-translate-failed-container[_ngcontent-ng-c2179709669]{border:1px solid #595959!important;background-color:#212125!important}</style><!----><!----><div class="eusoft-eudic-chrome-extension-explain-popover-container-class ng-tns-c1384486089-0" data-content-script-theme="light"><!----></div></template></app-capture-word><app-translate-failed-retry _ngcontent-ng-c4173660981="" _nghost-ng-c2179709669=""><!----></app-translate-failed-retry><!----></eusoft-chrome-extension-root-en><div mx-name="dream-translation"><template shadowrootmode="closed"><link rel="stylesheet" href="chrome-extension://ogleeipbbcokpeabliinildngejmdneg/css/content.css">
+<style>p,h1,h2,h3,h4,h5,h6,ul,li,ol,dl,dt,dd{margin:0;padding:0;list-style:none}h1,h2,h3,h4,h5,h6{font-size:18px}blockquote{margin:10px 0;padding-left:5px;border-left:6px solid #e4dfca}.dmx_unselectable{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important}.dmx_overflow_hidden{overflow:hidden}.dmx_hide{display:none}.dmx_show{display:block}#dmx_mouse_icon,#dmx_crop_bg,#dmx_crop_fg{display:none;position:fixed;top:0;left:0}#dmx_mouse_icon{z-index:999999999999;font-family:"dmx-icon",serif!important;width:32px;height:32px;font-size:18px;font-style:normal;background:#4395ff;border:1px solid #3589ff;box-shadow:0 1px 3px rgba(0,0,0,.19),inset 0 1px 0 rgba(255,255,255,.4);border-radius:50%;color:#fff;box-sizing:border-box;justify-content:center;align-items:center;cursor:pointer;transition:transform 0.25s ease}#dmx_mouse_icon:before{content:"\e661"}#dmx_mouse_icon:hover{background:linear-gradient(#FF416C,#FF4B2B);border:1px solid #FF416C}#dmx_mouse_icon:hover:before{transform:rotate(-30deg)}#dmx_crop_bg{z-index:9999999999998;width:100%;height:100%;background:#000;opacity:.2;cursor:crosshair}#dmx_crop_fg{z-index:9999999999999;width:1px;height:1px;background:#fff;opacity:.7;border:1px dashed #000}#dmx_dialog{font-family:Roboto,'Segoe UI',Arial,'Microsoft Yahei',sans-serif;all:initial;position:fixed;z-index:999999999998;width:500px;height:500px;background:#f5f8fa;border:1px solid #cfd0d2;border-radius:6px;right:0;bottom:0;box-sizing:border-box;box-shadow:0 0 12px -2px rgba(32,32,32,.5);display:none}#dmx_dialog.dmx_keep_right{height:auto;top:0;right:0;bottom:0}#dmx_dialog.dmx_popup{top:0;left:0;width:520px;height:500px;border:0;border-radius:0}#dmx_dialog.dmx_popup.fullscreen{width:100%;height:100%;min-width:450px;min-height:300px}#dmx_dialog_resize_n{cursor:ns-resize;position:absolute;z-index:999999999999;left:0;top:-5px;width:100%;height:8px}#dmx_dialog_resize_e{cursor:ew-resize;position:absolute;z-index:999999999999;right:-7px;top:0;width:8px;height:100%}#dmx_dialog_resize_s{cursor:ns-resize;position:absolute;z-index:999999999999;left:0;bottom:-5px;width:100%;height:8px}#dmx_dialog_resize_w{cursor:ew-resize;position:absolute;z-index:999999999999;left:-5px;top:0;width:8px;height:100%}#dmx_dialog_resize_nw{cursor:nwse-resize;position:absolute;z-index:999999999999;left:-5px;top:-5px;width:17px;height:17px}#dmx_dialog_resize_ne{cursor:nesw-resize;position:absolute;z-index:999999999999;right:-5px;top:-5px;width:10px;height:10px}#dmx_dialog_resize_sw{cursor:nesw-resize;position:absolute;z-index:999999999999;left:-5px;bottom:-5px;width:10px;height:10px}#dmx_dialog_resize_se{cursor:nwse-resize;position:absolute;z-index:999999999999;right:-5px;bottom:-5px;width:17px;height:17px}#dmx_dialog_title{height:32px;line-height:32px;padding:0 10px;background:#f5f8fa;border-bottom:1px solid #cfd0d2;border-radius:6px 6px 0 0;cursor:move}#dmx_dialog_title .dmx-icon{cursor:pointer;color:#232B33}#dmx_dialog_title .dmx-icon:hover{opacity:0.7}#dmx_dialog_title .dmx_left{float:left}#dmx_dialog_title .dmx_left > div{float:left;margin-right:8px}#dmx_dialog_title #dmx_close .dmx-icon{color:#FC4A4A;font-size:18px}#dmx_dialog_title #dmx_pin:before{content:"\e65a";padding:2px;font-size:18px}#dmx_dialog_title #dmx_pin.active:before{content:"\e659";background:#e0e3e6;border-radius:2px}#dmx_dialog_title #dmx_fullscreen:before{content:"\e63f"}#dmx_dialog_title #dmx_fullscreen.active:before{content:"\e63e"}#dmx_dialog_title .dmx-icon-voice{font-size:18px}#dmx_dialog_title .dmx-icon-heart{color:#FC4A4A}#dmx_dialog_title #dmx_history{margin:2px 0 0 15px;border:1px solid gray;border-radius:30px;height:26px;overflow:hidden}#dmx_dialog_title #dmx_history .dmx-icon{display:block;float:left;margin:0;line-height:26px}#dmx_dialog_title #dmx_history .dmx-icon:hover{background:#252525;color:#fff}#dmx_dialog_title #dmx_history .dmx-icon-left{padding:0 8px;border-right:1px solid gray}#dmx_dialog_title #dmx_history .dmx-icon-right{padding:0 8px}#dmx_dialog_title #dmx_history .dmx-icon.disabled{color:#9EA0A3;background:#F3F6F9;opacity:0.8}#dmx_dialog.dmx_popup #dmx_history{margin-left:0}#dmx_dialog_title #dmx_navigate{margin:1px 0 0 15px}#dmx_dialog_title #dmx_navigate u{float:left;display:block;background:#F3F6F9;border:1px solid #C4C5C8;border-radius:5px 5px 0 0;padding:0 8px;margin-right:5px;height:30px;line-height:30px;overflow:hidden;font-size:15px;font-weight:500;text-decoration:none;cursor:pointer}#dmx_dialog_title #dmx_navigate u.active{border-bottom:1px solid #F3F6F9;opacity:1}#dmx_dialog_title .dmx_right{float:right}#dmx_dialog_title .dmx_right > div{float:right;margin-left:8px}#dmx_dialog_content{box-sizing:border-box;position:relative;margin-top:2px;width:100%;height:calc(100% - 35px);overflow:auto}#dmx_iframe{box-sizing:border-box;width:100%;height:calc(100% - 6px);border:none}#dmx_head{box-sizing:border-box;width:100%;height:45px;padding:2px 10px 5px;background:#F3F6F9;border-bottom:1px solid rgba(32,33,36,0.28);box-shadow:0 1px 4px 0 rgba(32,33,36,0.18)}.dmx_content{box-sizing:border-box;position:absolute;left:0;top:45px;width:100%;height:calc(100% - 45px);overflow:auto}.dmx_main{margin:0 auto;padding:10px;min-width:100px;font-size:15px;line-height:1.8}.dmx_main_trans{padding-bottom:0}.dmx_main_search{padding:10px 0 0 10px}#dmx_dialog_left{position:absolute;bottom:0;left:-37px;width:37px}#dmx_dialog_left a{display:block;width:32px;height:32px;line-height:30px;font-size:16px;background:#4395ff;border:1px solid #3589ff;box-shadow:0 1px 3px rgba(0,0,0,.19),inset 0 1px 0 rgba(255,255,255,.4);border-radius:50%;color:#fff;box-sizing:border-box;text-align:center;margin-top:5px}.dmx_loading{border:3px solid #bdc3c7;border-top:3px solid #2c3e50;border-bottom:3px solid #2c3e50;border-radius:50%;display:block;width:16px;height:16px;animation:spin 1.2s linear infinite}@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{}::-webkit-scrollbar-thumb{background-color:#bdc3c7;border-radius:5px}::-webkit-scrollbar-thumb:hover{background-color:#9da5ac}::-webkit-scrollbar-thumb:active{background-color:#2c3e50}p,h1,h2,h3,h4,h5,h6{margin:0;padding:0}a{text-decoration:none;color:#333}a:hover{color:#1a73e8}.fx:after{display:block;content:'';clear:both}.mt-1{margin-top:10px}.mb-1{margin-bottom:10px}#translate_input{background:#fff;color:#4e5053;min-height:26px;line-height:1.6;padding:5px 10px;outline:none;overflow:auto}#translate_input:focus{border-color:#409eff}#translate_input.big{min-height:52px}.language_box{position:relative}.language_box > div{float:left}.language_button{background:#ffffff;border:1px solid #cfd0d2;border-radius:8px;margin-top:10px;padding:2px 10px;min-width:80px;height:28px;line-height:28px;text-align:center;user-select:none;cursor:pointer}.language_button:hover{color:#1a73e8;box-shadow:-2px -2px 2px 0 #d0d7de}.language_button:after{font-size:8px;margin-left:6px;content:"\e629"}.language_button.active{z-index:999;position:relative;border-radius:8px 8px 0 0;border-bottom:1px solid #fff;box-shadow:-2px 0 0 0 #d0d7de;height:31px}.language_button.active:after{content:"\e62a"}#language_dropdown{z-index:998;position:absolute;left:0;top:46px;box-sizing:border-box;width:100%;background:#fff;border:1px solid #cfd0d2;border-radius:0 8px 8px 8px;padding:10px 10px 5px 10px;margin-bottom:3px;box-shadow:0 2px 2px 2px #d0d7de;display:none}#language_dropdown.dropdown_target{border-radius:8px}#language_dropdown.dropdown_target u:first-child{display:none}#language_dropdown u{float:left;display:block;text-decoration:none;background:#f5f5f5;border:1px solid #d3d3d3;border-radius:5px;color:rgba(0,0,0,0.87);padding:2px 5px;margin:0 5px 5px 0;cursor:pointer}#language_dropdown u:hover{background:#414345;border:1px solid #232526;color:#fff}#language_dropdown u.active{background:#e8f0fe;border:1px solid #185abc;color:#185abc}#language_dropdown u.disabled{background:#f5f5f5;border:1px solid #d3d3d3;color:#ddd;cursor:not-allowed}#language_exchange{margin-top:10px;padding:2px 8px;cursor:pointer}#language_exchange.disabled{color:#ddd;cursor:not-allowed}#translate_crop{float:right;background:#fff;border:1px solid #dcdfe6;color:#606266;border-radius:8px;height:28px;line-height:28px;padding:2px 7px;margin:10px 10px 0 0;cursor:pointer}#translate_button{float:right;background:#4395ff;border:1px solid #3589ff;border-radius:8px;color:#fff;height:28px;line-height:28px;margin-top:10px;padding:2px 15px;cursor:pointer;user-select:none;transition:.1s}#translate_button:hover,#translate_crop:hover{box-shadow:-2px -2px 2px 0 #d0d7de}#translate_button:active{opacity:.7}.case{font-size:16px;margin-top:10px;border-radius:8px;background:#ffffff;border:1px solid #cfd0d2;transition:all .2s linear}.case:hover{box-shadow:0 1px 4px 0 rgba(0,0,0,0.37)}.case:first-child{margin-top:0}.case .dmx-icon{cursor:pointer}.case .dmx-icon:hover{color:#1a73e8}.case_copy,.case_bilingual{display:none}.case:hover .case_copy,.case:hover .case_bilingual{display:block}.case_content{padding:7px 10px;line-height:1.6}.case_content > div,.case_dd > div{margin-top:5px}.case_content > div:first-child,.case_dd > div:first-child{padding-top:0!important}.case_content [data-search="true"]{cursor:pointer}.case_content p.source_text{color:#7398e6;margin-top:5px}.case_content p.source_text:first-child{margin-top:0}.case_dd{margin-top:10px;border-top:thin dashed #ccc}.case_dd_head{padding:10px 0 0;font-weight:bold;font-size:110%}.case_dd_ph .dmx-icon{margin-left:5px}.case_dd_parts p{padding:3px 0 0}.case_dd_parts p:first-child{padding:0}.case_dd_parts p b{color:#409eff;background:#ecf5ff;border:1px solid #d9ecff;border-radius:4px;padding:0 5px;margin-right:10px}.case_dd_exchange b{font-weight:500}.case_dd_exchange u{text-decoration:none;margin-right:10px}.case_dd_exchange u a{margin-left:5px}.case_dd_chart{color:#e6a23c;background-color:#fdf6ec;border:1px solid #faecd8;border-radius:5px;padding:5px}.case_dd_chart u{text-decoration:none;margin:0 10px 0 5px;color:#ffc942}.case_dd_example em{font-style:normal;color:#e6a23c}.case_dd_tags u{text-decoration:none;display:inline-block;margin-right:5px;padding:0 5px;color:#909399;background:#f4f4f5;border:1px solid #e9e9eb;border-radius:4px;font-size:90%}.case_dd_img a{margin-right:5px}.case_dd_img img{border:1px solid #ccc;width:80px;height:80px;object-fit:contain}.case_top{padding:2px 10px;border-bottom:1px solid rgba(0,0,0,0.1)}.case_bottom{padding:2px 10px;border-top:1px solid rgba(0,0,0,0.1)}.case_left{float:left;margin-right:10px}.case_left:last-child{margin-right:0}.case_right{float:right;margin-left:15px}.case_right:last-child{margin-left:0}.case_right a{font-weight:bold}.case_right a .dmx-icon{margin-right:3px}.case_bilingual{cursor:pointer}.case_bilingual:after{font-size:22px;line-height:1;display:inline-block;vertical-align:middle;margin-left:3px;content:"\e681";color:rgba(0,0,0,0.26)}.case_bilingual.active:after{content:"\e680";color:#1a73e8}.dmx_ripple{position:relative;display:inline-block;vertical-align:middle;text-align:center;width:26px;height:26px;line-height:26px;font-size:20px;color:#535353;cursor:pointer;transition:all .2s}.dmx_ripple:hover{color:#1a73e8;transform:scale(1.3)}.dmx_ripple.active{color:#e53935}.dmx_ripple.active:before,.dmx_ripple.active:after{display:block;position:absolute;content:'';top:0;right:0;bottom:0;left:0;border-radius:50%;border:1px solid #e35d5b}.dmx_ripple.active:before{animation:dmx_ripple 1s linear infinite}.dmx_ripple.active:after{animation:dmx_ripple 1s linear 0.5s infinite}.dmx_reverse:before,.dmx_reverse:after{animation-direction:reverse!important}@keyframes dmx_ripple{0%{transform:scale(1)}50%{transform:scale(1.75);opacity:0.5}75%{transform:scale(1.95);opacity:0.2}100%{transform:scale(2.05);opacity:0}}.dmx_pink{color:deeppink}.search_box{background:#fff;color:#4e5053;height:30px;line-height:30px;padding:3px 60px 3px 8px;position:relative}.search_box:hover{border-color:#409eff}.search_box > input{display:block;width:100%;height:28px;font-size:17px;outline:none;border:none}.search_box #search_but{position:absolute;top:calc(50% - 15px);right:10px}.search_box #search_remove{position:absolute;top:calc(50% - 15px);right:35px;display:none}.search_box:hover #search_remove{display:block}#dmx_alert{z-index:999999999999;position:fixed;top:0;left:50%;transform:translateX(-50%);width:300px}#dmx_alert > div{position:relative;padding:10px;font-size:15px;line-height:1.5;box-sizing:border-box;color:#ffffff;background-color:#414345;border:1px solid #232526;border-radius:4px;box-shadow:0 2px 12px 0 rgba(0,0,0,.1);transition:all .3s;overflow:hidden}#dmx_alert > div.an_top{margin-top:10px}#dmx_alert > div.an_delete{opacity:0.1}#dmx_alert > div .dmx-icon{margin-right:5px}#dmx_alert .dxm_alert_success{background-color:#6FBD39;border:1px solid #56ab2f}#dmx_alert .dxm_alert_error{background-color:#ef473a;border:1px solid #b31217}.dmx_button{display:inline-block;background:#4395ff;border:1px solid #3589ff;border-radius:6px;color:#fff;line-height:1;margin:0 10px 10px 0;padding:8px 12px;white-space:nowrap;text-align:center;cursor:pointer;user-select:none;transition:.1s}.dmx_button:last-child{margin:0}.dmx_button:hover{box-shadow:1px 4px 6px 0 #d0d7de}.dmx_button:active{opacity:.7}.dmx_button .dmx-icon{margin-right:5px}.dmx_button_default{background:#fff;border:1px solid #dcdfe6;color:#606266}.dmx_button_success{background-color:#67c23a;border-color:#67c23a;color:#fff}.dmx_button_warning{background-color:#e6a23c;border-color:#e6a23c;color:#fff}.dmx_button_danger{background-color:#ef473a;border-color:#dd1419;color:#fff}.dict_cambridge .sense-body{margin-top:10px}.dict_cambridge .dxref{margin-right:3px;padding:2px 6px;color:#fff;font-weight:700;font-size:.75rem;text-align:center;background:#1d2956;border-radius:50px}.dict_cambridge .ddef_h{margin-bottom:10px;font-weight:700}.dict_cambridge .dsense_h,.dict_cambridge .ca_h{margin-top:10px;font-weight:700;color:#5d2fc1}.dict_cambridge .dtrans{display:block;color:#0580e8}.dict_collins .dictlink{margin-top:10px}.dict_collins .dictlink:first-child{margin-top:0}.dict_collins .sensenum,.dict_collins .def,.dict_collins .word-frequency-container .label{display:inline-block}.dict_collins .title_frequency_container{color:#c12d30}.dict_collins .pos{text-transform:uppercase;font-weight:bold;color:#c12d30}.dict_collins .hom{margin-top:10px}.dict_collins .hom:first-of-type{margin-top:0}.dict_collins .imageRight{float:right;width:30%;min-width:150px;padding:2px;border:1px solid #bbb;border-radius:5px;margin:0 0 5px 5px}.dict_etymonline [class^="word__name--"]{font-size:120%;font-weight:700;color:#0580e8}.dict_oxford .examples{margin-left:10px}.dict_wr .rh_pdef{display:block}.dict_macmillan .dflex{display:flex;flex:1 1 auto;flex-wrap:nowrap}.dict_macmillan .SENSE-NUM,.dict_macmillan .note{display:inline-block;min-width:1.2em;height:1.2em;line-height:1.2em;padding:.2em;margin-right:.2em;border-radius:1em;background:#d70a20;text-align:center;font-weight:bold;color:white}</style><style data-name="longman">.longman_dict .Sense img{float:right;width:30%;max-width:400px;margin-left:5px}.longman_dict .Sense:after{display:block;content:'';clear:both}.longman_dict .EXAMPLE .dmx-icon{margin-right:5px}.longman_dict .infls,.longman_dict .description,.longman_dict .title,.longman_dict .url,.longman_dict .summary,.longman_dict .og,.longman_dict .infls,.longman_dict .description,.longman_dict .title,.longman_dict .url,.longman_dict .summary,.longman_dict .og,.longman_dict .assetref,.longman_dict .assetref,.longman_dict .dictentry,.longman_dict .dictionary_intro,.longman_dict .topic_intro,.longman_dict .exaGroup,.longman_dict .exaGroup .exaEntry,.longman_dict .exaGroup .title,.longman_dict .exaGroup .exa,.ldoceEntry .Entry,.ldoceEntry .ErrorBox,.ldoceEntry .EXAMPLE,.ldoceEntry .GramExa,.ldoceEntry .PhrVbEntry,.ldoceEntry .RunOn,.ldoceEntry .Sense,.ldoceEntry .Subsense,.ldoceEntry .ColloBox,.ldoceEntry .ThesBox,.ldoceEntry .F2NBox,.ldoceEntry .GramBox,.ldoceEntry .HEADING.newline,.ldoceEntry .Collocate,.ldoceEntry .Exponent,.ldoceEntry .EXPL,.ldoceEntry .COLLEXA,.ldoceEntry .THESEXA,.ldoceEntry .LearnerItem,.ldoceEntry .ColloExa,.bussdictEntry .Box,.bussdictEntry .Entry,.bussdictEntry .ColloExa,.bussdictEntry .ErrorBox,.bussdictEntry .EXAMPLE,.bussdictEntry .GramExa,.bussdictEntry .PhrVbEntry,.bussdictEntry .Sense,.bussdictEntry .Subsense,.bussdictEntry .ColloBox,.bussdictEntry .ThesBox,.bussdictEntry .F2NBox,.bussdictEntry .GramBox,.bussdictEntry .UsageBox,.bussdictEntry .HEADING.newline,.bussdictEntry .SECHEADING,.bussdictEntry .subheading,.bussdictEntry .Collocate.newline,.bussdictEntry .Exponent,.bussdictEntry .GramBox .EXPL,.bussdictEntry .EXPL.newline,.bussdictEntry .LearnerItem,.bussdictEntry .CompareWord,.bussdictEntry .EXP,.bussdictEntry .boxheader,.bussdictEntry .SubEntry{display:block}.ldoceEntry .FIELD,.ldoceEntry .HWD,.ldoceEntry .NOTE,.ldoceEntry .Noteprompt,.ldoceEntry .PIC,.ldoceEntry .PICCAL,.ldoceEntry .ACTIV,.ldoceEntry .BOX,.ldoceEntry .COMMENT,.ldoceEntry .USAGE,.bussdictEntry .ACTIV,.bussdictEntry .COMMENT,.bussdictEntry .FIELD,.bussdictEntry .HWD,.bussdictEntry .NOTE,.bussdictEntry .Noteprompt,.bussdictEntry .PIC,.bussdictEntry .PICCAL,.bussdictEntry .FIELDXX,.bussdictEntry .USAGE,.bussdictEntry .Crossrefto .REFLEX,.longman_dict .suppressed,.longman_dict .verbTable .view_less,.longman_dict .verbTable .next_tenses{display:none}.bussdictEntry .SubEntry .HWD,.bussdictEntry .GramBox.nobox,.bussdictEntry .GramBox.nobox .EXPL,.bussdictEntry .Collocate.inline{display:inline}.longman_dict .Crossrefto,.longman_dict .assettype,.longman_dict .exaGroup .title,.longman_dict .exaGroup .NodeW,.longman_dict .wordfams,.longman_dict .etym .Head,.longman_dict .verbTable .lemma,.longman_dict .verbTable .Simple_Form .aux,.longman_dict .verbTable .col1,.longman_dict .verbTable .view_more,.longman_dict .verbTable .view_less,.longman_dict .verbTable .verb_form,.ldoceEntry .ABBR,.ldoceEntry .AMEQUIV,.ldoceEntry .BREQUIV,.ldoceEntry .COLLO,.ldoceEntry .COLLOINEXA,.ldoceEntry .COMP,.ldoceEntry .Crossrefto,.ldoceEntry .DERIV,.ldoceEntry .FULLFORM,.ldoceEntry .GRAM,.ldoceEntry .HINTBOLD,.ldoceEntry .HINTTITLE,.ldoceEntry .HOMNUM,.ldoceEntry .HYPHENATION,.ldoceEntry .PHRVBHWD,.ldoceEntry .LEXUNIT,.ldoceEntry .LEXVAR,.ldoceEntry .OPP,.ldoceEntry .ORTHVAR,.ldoceEntry .PASTPART,.ldoceEntry .PASTTENSE,.ldoceEntry .PLURALFORM,.ldoceEntry .POS,.ldoceEntry .PRESPART,.ldoceEntry .PRESPARTX,.ldoceEntry .PROPFORM,.ldoceEntry .PROPFORMPREP,.ldoceEntry .PTandPP,.ldoceEntry .PTandPPX,.ldoceEntry .REFHWD,.ldoceEntry .REFLEX,.ldoceEntry .RELATEDWD,.ldoceEntry .SIGNPOST,.ldoceEntry .SUPERL,.ldoceEntry .SYN,.ldoceEntry .T3PERSSING,.ldoceEntry .T3PERSSINGX,.ldoceEntry .UNCLASSIFIED,.ldoceEntry .warning,.ldoceEntry .sensenum,.ldoceEntry .synopp,.ldoceEntry .FREQ,.ldoceEntry .AC,.ldoceEntry .HEADING,.ldoceEntry .heading,.ldoceEntry .SECHEADING,.ldoceEntry .subheading,.ldoceEntry .COLLOC,.ldoceEntry .EXP,.ldoceEntry .EXPR,.ldoceEntry .keycollo,.ldoceEntry .THESPROPFORM,.ldoceEntry .DEFBOLD,.bussdictEntry .GRAM,.bussdictEntry .POS,.bussdictEntry .ABBR,.bussdictEntry .AMEQUIV,.bussdictEntry .BREQUIV,.bussdictEntry .COLLO,.bussdictEntry .COMP,.bussdictEntry .COLLOINEXA,.bussdictEntry .DERIV,.bussdictEntry .FREQ,.bussdictEntry .LEVEL,.bussdictEntry .FULLFORM,.bussdictEntry .HINTBOLD,.bussdictEntry .HINTTITLE,.bussdictEntry .HOMNUM,.bussdictEntry .HYPHENATION,.bussdictEntry .LEXUNIT,.bussdictEntry .LEXVAR,.bussdictEntry .OPP,.bussdictEntry .ORTHVAR,.bussdictEntry .PASTPART,.bussdictEntry .PASTTENSE,.bussdictEntry .PHRVBHWD,.bussdictEntry .PLURALFORM,.bussdictEntry .PRESPART,.bussdictEntry .PRESPARTX,.bussdictEntry .PROPFORM,.bussdictEntry .PROPFORMPREP,.bussdictEntry .PTandPP,.bussdictEntry .PTandPPX,.bussdictEntry .REFLEX,.bussdictEntry .RELATEDWD,.bussdictEntry .SIGNPOST,.bussdictEntry .SUPERL,.bussdictEntry .SYN,.bussdictEntry .T3PERSSING,.bussdictEntry .T3PERSSINGX,.bussdictEntry .UNCLASSIFIED,.bussdictEntry .THESPROPFORM,.bussdictEntry .SECHEADING,.bussdictEntry .subheading,.bussdictEntry .HEADING,.bussdictEntry .heading,.bussdictEntry .warning,.bussdictEntry .sensenum,.bussdictEntry .synopp,.bussdictEntry .Gramref,.bussdictEntry .COLLOC,.bussdictEntry .EXP,.bussdictEntry .EXPR,.bussdictEntry .keycollo,.bussdictEntry .DEFBOLD,.bussdictEntry .boxheader,.bussdictEntry .SubEntry .HWD{font-weight:bold}.ldoceEntry .REFHOMNUM,.bussdictEntry .REFHOMNUM{vertical-align:super;font-size:60%}.bussdictEntry .HOMNUM,.longman_dict .etym .Head .HOMNUM{vertical-align:super;font-size:12pt}.ldoceEntry .AC,.ldoceEntry .synopp{color:#fff;border-color:#f1d600;background-color:#f1d600}.ldoceEntry .EXPL .cross,.ldoceEntry .GramBox .EXPL .dont_say,.ldoceEntry .BADEXA{color:red}.ldoceEntry .FREQ,.bussdictEntry .FREQ,.bussdictEntry .LEVEL{color:red;border-color:red}.ldoceEntry .LEVEL{color:red;font-size:120%}.ldoceEntry .frequent .HOMNUM,.ldoceEntry .HOMNUM{color:red;vertical-align:super;font-size:12pt}.ldoceEntry .frequent .HYPHENATION,.ldoceEntry .HYPHENATION,.ldoceEntry .PHRVBHWD{color:red;font-size:160%}.ldoceEntry .warning,.bussdictEntry .warning{color:red;font-style:normal}.ldoceEntry .GramBox .CROSS .neutral{color:red;margin-right:10px}.Entry .topic,.topicCloud .topic_other{color:red;text-decoration:underline}.ldoceEntry .GRAM,.bussdictEntry .GRAM{color:green;margin:0 5px 10px 3px}.ldoceEntry .POS,.bussdictEntry .POS{color:green;margin:0 0 0 10px}.longman_dict .pos{color:green;font-weight:normal}.ldoceEntry .REGISTERLAB{color:purple;font-style:italic}.ldoceEntry .SIGNPOST{background-color:#f18500;color:white;font-size:79%;text-transform:uppercase;border-radius:5px;padding:0 3px;letter-spacing:1px}.longman_dict .Crossrefto,.ldoceEntry .RELATEDWD{color:blue}.bussdictEntry .synopp{font-style:normal;color:darkblue}.longman_dict .assettype,.ldoceEntry .Thesref,.ldoceEntry .GEO,.ldoceEntry .geo,.ldoceEntry .GLOSS,.ldoceEntry .LINKWORD,.ldoceEntry .keycollo,.bussdictEntry .LINKWORD,.bussdictEntry .COLLOC.key,.bussdictEntry .keycollo{color:#364395}.bussdictEntry .Box,.ldoceEntry .ColloBox,.ldoceEntry .ThesBox,.ldoceEntry .F2NBox,.ldoceEntry .GramBox{border-radius:5px;border:1px solid #364395;padding:10px;margin:8px 0}.ldoceEntry .HEADING,.ldoceEntry .heading,.bussdictEntry .SubEntry .HWD{color:#364395;font-size:120%}.bussdictEntry .GEO,.bussdictEntry .geo,.bussdictEntry .REGISTERLAB{color:#364395;font-style:italic}.bussdictEntry .GLOSS{color:#364395;font-weight:normal;font-style:normal}.bussdictEntry .PHRVBHWD,.bussdictEntry .HEADING,.bussdictEntry .heading,.bussdictEntry .Gramref{color:#364395;font-size:120%}.bussdictEntry .boxheader{background-color:#364395;color:#fff}.longman_dict .dictionary_intro,.longman_dict .topic_intro{background-color:#35a3ff;color:#fff;padding-left:10px;margin:5px 0 10px -7px}.longman_dict .assets_intro,.longman_dict .asset_intro{border:1px solid #f1d600;background-color:#f1d600;color:#fff;font-weight:normal;border-radius:5px;padding-left:3px;padding-right:3px}.longman_dict .verbTable table{background-color:#fae660;margin-bottom:10px;border-collapse:collapse;width:100%}.ldoceEntry .SECHEADING,.ldoceEntry .subheading{display:table;border-radius:5px;border:solid #6f469d 2px;padding-left:4px;padding-right:15px;margin:10px 0;color:white;text-transform:uppercase;background-color:#6f469d}.ldoceEntry .amefile{color:#4693db;font-size:130%;padding-left:5px}.ldoceEntry .brefile{color:#fa6360;font-size:130%;padding-left:5px}.ldoceEntry .neutral,.verbTable .aux,.verbTable .verb_form,.ldoceEntry .sensenum{color:black}.ldoceEntry .sensenum{font-style:normal}.longman_dict .GramBox{color:black;background-color:#fff}.bussdictEntry .Box .EXAMPLE{color:black;display:inline;margin-left:0;font-style:italic}.verbTable .lemma{color:black;font-size:120%;margin:0 0 0 10px}.verbTable .view_more,.verbTable .view_less{color:black;text-align:center;padding:20px 0 10px}.verbTable .geo{color:black;font-style:italic;font-weight:normal}.longman_dict .exaGroup .title{color:black;font-size:110%;margin:10px 0 0 5px}.longman_dict .Entry .related_topics{color:black;padding:0 4px 1px 0;font-size:16px}.ldoceEntry .COLLEXA,.ldoceEntry .THESEXA{color:gray}.ldoceEntry .exafile{color:gray;font-style:normal;font-size:120%;padding:5px}.ldoceEntry .EXAMPLE,.bussdictEntry .EXAMPLE,.longman_dict .exaGroup .exa{color:gray;margin-left:10px}.bussdictEntry .supp,.bussdictEntry .SIGNPOST{background-color:gray}.longman_dict .verbTable .col2{color:gray;width:150px}.longman_dict a{border-bottom:thin dotted gray}.ldoceEntry .RunOn{margin-bottom:10px}.longman_dict .right_col .yellow_box{margin-bottom:10px;display:inline-block}.longman_dict .dictentry,.longman_dict .exaGroup .exaEntry,.longman_dict .exaGroup .exaGroup,.longman_dict .verbTable .entry{margin-bottom:20px}.ldoceEntry .Sense,.bussdictEntry .Sense,.longman_dict .verbTable .entry{margin-left:20px;margin-bottom:15px}.bussdictEntry .SubEntry.embedded{margin-top:-5px;margin-left:20px;margin-bottom:0}.bussdictEntry .SubEntry{margin-top:2px;margin-bottom:2px}.longman_dict .yellow_box{margin-top:20px;display:table}.ldoceEntry .Entry,.bussdictEntry .Entry{font-size:12pt;text-align:justify;margin-top:8px}.ldoceEntry .Subsense,.bussdictEntry .ColloExa,.bussdictEntry .GramExa,.bussdictEntry .Subsense{margin-left:10px}.ldoceEntry .PROPFORM,.ldoceEntry .PROPFORMPREP,.ldoceEntry .COLLO,.bussdictEntry .SubEntry{margin-left:20px}.ldoceEntry .Crossrefto,.ldoceEntry .DERIV{font-size:120%}.ldoceEntry .Entry{font-size:11pt;text-align:justify}.ldoceEntry .HINTITALIC,.ldoceEntry .STRONG,.ldoceEntry .GOODCOLLO,.bussdictEntry .COLLOINEXA,.bussdictEntry .HINTITALIC,.bussdictEntry .STRONG,.bussdictEntry .COLLEXA,.bussdictEntry .THESEXA,.bussdictEntry .GOODCOLLO,.bussdictEntry .SECHEADING,.bussdictEntry .subheading{font-style:italic}.ldoceEntry .italic,.ldoceEntry .infllab,.bussdictEntry .italic,.bussdictEntry .infllab{font-style:italic;font-weight:normal}.bussdictEntry .SECHEADING,.bussdictEntry .subheading,.bussdictEntry .UNDERLINE{text-decoration:underline}.ldoceEntry .OBJECT{font-weight:normal}.ldoceEntry .synopp,.ldoceEntry .FREQ,.ldoceEntry .AC{display:inline-block;font-style:normal;text-transform:uppercase;border-radius:5px;border:solid 1px;padding-left:4px;padding-right:4px}.longman_dict .GramBox .boxheader,.longman_dict .ThesBox .heading,.longman_dict .ColloBox .heading{line-height:2em}.longman_dict .ColloBox .heading{margin:0 10px 0 0}.ldoceEntry .Collocate,.ldoceEntry .Exponent{margin:15px 0 0 5px}.ldoceEntry .BADCOLLO{text-decoration:line-through}.bussdictEntry .DERIV{font-size:120%}.bussdictEntry .HYPHENATION{font-size:160%}.bussdictEntry .OBJECT{font-weight:normal}.bussdictEntry .REFHWD{text-transform:lowercase;font-style:normal}.bussdictEntry .neutral{font-style:normal;font-weight:normal;font-variant:normal}.bussdictEntry .sensenum{font-style:normal;margin-right:5px;margin-left:3px}.bussdictEntry .gramref{margin:5px 0}.bussdictEntry .BADCOLLO,.bussdictEntry .BADEXA{text-decoration:line-through}.verbTable td{padding:0 10px}.verbTable .col1{color:#333333;padding:20px 10px 0;font-size:14px;text-decoration:underline}.verbTable .view_more span,.verbTable .view_less span{cursor:pointer}.verbTable .header{background-color:#333333;color:#fff;padding:0 0 0 10px;font-size:120%}.longman_dict .wordfams .crossRef,.longman_dict .wordfams .w{margin:0 6px}.longman_dict .asset{margin-top:20px}.longman_dict .Entry .topics_container{display:table}</style>
+<div id="dmx_dialog" style="width: 500px; height: 470px; display: none;">
+    <div id="dmx_dialog_title" style="cursor: move;">
+        <div class="dmx_left">
+            <div id="dmx_close"><i class="dmx-icon dmx-icon-close"></i></div>
+            <div id="dmx_pin" class="dmx-icon"></div>
+            <div id="dmx_fullscreen" class="dmx-icon"></div>
+            <div id="dmx_history">
+                <i class="dmx-icon disabled dmx-icon-left"></i>
+                <i class="dmx-icon disabled dmx-icon-right"></i>
+            </div>
+            <div id="dmx_navigate">
+                <u class="dmx-icon" action="translate">翻译</u>
+                <u class="dmx-icon active" action="dictionary">词典</u>
+                <u class="dmx-icon" action="search">搜索</u>
+            </div>
+        </div>
+        <div class="dmx_right">
+            <div id="dmx_setting"><i class="dmx-icon dmx-icon-setting"></i></div>
+            <div id="dmx_more"><i class="dmx-icon dmx-icon-more"></i></div>
+            <div id="dmx_voice" class="dmx_hide"><i class="dmx-icon dmx-icon-voice"></i></div>
+            <div id="dmx_heart" class="dmx_hide"><i class="dmx-icon dmx-icon-heart"></i></div>
+        </div>
+    </div>
+    <div id="dmx_dialog_content"><div id="dmx_head">
+    <div class="case search_box">
+        <input id="dictionary_input" type="text" maxlength="100" autocomplete="off">
+        <div id="search_remove"><i class="dmx-icon dmx-icon-error"></i></div>
+        <div id="search_but"><i class="dmx-icon dmx-icon-search"></i></div>
+    </div>
+</div>
+<div id="case_list" class="dmx_main dmx_content fx"></div></div>
+    <div id="dmx_dialog_resize_n"></div>
+    <div id="dmx_dialog_resize_e"></div>
+    <div id="dmx_dialog_resize_s"></div>
+    <div id="dmx_dialog_resize_w"></div>
+    <div id="dmx_dialog_resize_nw"></div>
+    <div id="dmx_dialog_resize_ne"></div>
+    <div id="dmx_dialog_resize_sw"></div>
+    <div id="dmx_dialog_resize_se"></div>
+    <div id="dmx_dialog_left"></div>
+</div>
+<div id="dmx_mouse_icon" style="display: none;"></div>
+<div id="dmx_crop_bg"></div>
+<div id="dmx_crop_fg"></div></template></div></html>

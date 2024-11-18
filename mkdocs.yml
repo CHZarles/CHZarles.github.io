@@ -185,8 +185,8 @@ nav:
         - 模型验证: ./DeepLearning/Pytorch_tudui_intro/p32 验证套路.md
       - Pytorch面试精华: none.md
     - 知识碎片:
-      - 后向传播: docs/post-pro.md
-  - 🏁Competative Programing: none.md
+      - 后向传播: ./DeepLearning/other/关于前向传播和反向传播的理解.md
+  - 🏁Competitive Programing: none.md
   - 📚CS basic: none.md
   - 🐦Projects: 
     - KnowledgeBrain: 
@@ -203,3 +203,10 @@ plugins:
 markdown_extensions:
   - toc: # 启用目录
       permalink: true
+
+
+# pdf
+markdown_extensions:
+  - attr_list
+plugins:
+  - mkdocs-pdf
