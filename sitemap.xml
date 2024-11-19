@@ -2,98 +2,102 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://localhost:8000/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/pytorch_intro/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p10-p11%20Transforms/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p12-p13%20%E5%B8%B8%E7%94%A8Transforms/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p14%20torchvision/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p15%20dataloader/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p16%20nn.module/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p17%20%E5%8D%B7%E7%A7%AF%E6%93%8D%E4%BD%9C/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p18%20%E5%8D%B7%E7%A7%AF%E5%B1%82/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p19%20%E6%9C%80%E5%A4%A7%E6%B1%A0%E5%8C%96%E5%B1%82/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p20%20%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p21%20%E7%BA%BF%E6%80%A7%E5%B1%82/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p22%20sequential/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p23%20%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%92%8C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p24%20%E4%BC%98%E5%8C%96%E5%99%A8/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p25%20%E7%8E%B0%E6%9C%89%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%94%B9/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p26%20%E6%A8%A1%E5%9E%8B%E4%BF%9D%E5%AD%98%E5%92%8C%E5%8A%A0%E8%BD%BD/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p27-p29%20%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E5%A5%97%E8%B7%AF/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p30-p31%20GPU/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p32%20%E9%AA%8C%E8%AF%81%E5%A5%97%E8%B7%AF/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p4%20dir%E5%92%8Chelp%E5%87%BD%E6%95%B0/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p6-p7%20Dataset/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p8-p9%20TensorBoard/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
+    </url>
+    <url>
+         <loc>https://localhost:8000/DeepLearning/other/pytorch_basic/</loc>
+         <lastmod>2024-11-19</lastmod>
     </url>
     <url>
          <loc>https://localhost:8000/DeepLearning/other/%E5%85%B3%E4%BA%8E%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%E5%92%8C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
-         <lastmod>2024-11-18</lastmod>
+         <lastmod>2024-11-19</lastmod>
     </url>
 </urlset>

@@ -12,13 +12,11 @@
         <meta name="author" content="charles">
       
       
-        <link rel="canonical" href="https://localhost:8000/DeepLearning/other/%E5%85%B3%E4%BA%8E%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%E5%92%8C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%9A%84%E7%90%86%E8%A7%A3/">
+        <link rel="canonical" href="https://localhost:8000/DeepLearning/other/pytorch_basic/">
       
       
-        <link rel="prev" href="../../Pytorch_tudui_intro/p32%20%E9%AA%8C%E8%AF%81%E5%A5%97%E8%B7%AF/">
+        <link rel="prev" href="../%E5%85%B3%E4%BA%8E%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%E5%92%8C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%9A%84%E7%90%86%E8%A7%A3/">
       
-      
-        <link rel="next" href="../pytorch_basic/">
       
       
       <link rel="icon" href="../../../assets/favicon.png">
@@ -26,7 +24,7 @@
     
     
       
-        <title>后向传播 - CHZarles</title>
+        <title>Pytorch基本功 - CHZarles</title>
       
     
     
@@ -147,7 +145,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              后向传播
+              Pytorch基本功
             
           </span>
         </div>
@@ -1169,6 +1167,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%85%B3%E4%BA%8E%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%E5%92%8C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%9A%84%E7%90%86%E8%A7%A3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    后向传播
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1178,12 +1197,14 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
   <span class="md-ellipsis">
-    后向传播
+    Pytorch基本功
   </span>
   
 
@@ -1194,7 +1215,7 @@
         
   
   <span class="md-ellipsis">
-    后向传播
+    Pytorch基本功
   </span>
   
 
@@ -1206,6 +1227,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1214,9 +1237,153 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#matmul" class="md-nav__link">
     <span class="md-ellipsis">
-      参考阅读
+      matmul
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sigmoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      sigmoid
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      softmax
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linear" class="md-nav__link">
+    <span class="md-ellipsis">
+      linear
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="linear">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      方程组表示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      矩阵表示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relu" class="md-nav__link">
+    <span class="md-ellipsis">
+      relu
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      操作数据集
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作数据集">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 创建自定义 Dataset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-dataloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 创建 DataLoader
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dataloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 迭代 DataLoader
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      损失函数，优化器的使用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="损失函数，优化器的使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 损失函数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      用gpu手写训练和预测一个模型
     </span>
   </a>
   
@@ -1226,27 +1393,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../pytorch_basic/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Pytorch基本功
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1472,6 +1618,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1480,9 +1628,153 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#matmul" class="md-nav__link">
     <span class="md-ellipsis">
-      参考阅读
+      matmul
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sigmoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      sigmoid
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      softmax
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linear" class="md-nav__link">
+    <span class="md-ellipsis">
+      linear
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="linear">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      方程组表示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      矩阵表示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relu" class="md-nav__link">
+    <span class="md-ellipsis">
+      relu
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      操作数据集
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作数据集">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 创建自定义 Dataset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-dataloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 创建 DataLoader
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dataloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 迭代 DataLoader
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      损失函数，优化器的使用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="损失函数，优化器的使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 损失函数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      用gpu手写训练和预测一个模型
     </span>
   </a>
   
@@ -1506,20 +1798,200 @@
   
 
 
-  <h1>后向传播</h1>
+<div><h1 id="_1">常见的算子<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
+<h2 id="matmul">matmul<a class="headerlink" href="#matmul" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># test matmul</span>
+<span class="n">matrix1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="n">matrix2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]])</span>
 
-<div><h2 id="_1">参考阅读<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
-<blockquote>
-<p>下面是我收集的学习过程种觉得不错的资料</p>
-</blockquote>
-<p>先看这个，这个讲了反向传播的原理</p>
+<span class="n">result</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">matrix1</span><span class="p">,</span> <span class="n">matrix2</span><span class="p">)</span>
+
+<span class="n">expected_result</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">19</span><span class="p">,</span> <span class="mi">22</span><span class="p">],</span> <span class="p">[</span><span class="mi">43</span><span class="p">,</span> <span class="mi">50</span><span class="p">]])</span>
+
+<span class="c1"># Test if the result is as expected</span>
+<span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">expected_result</span><span class="p">),</span> <span class="sa">f</span><span class="s2">"Test failed: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2"> != </span><span class="si">{</span><span class="n">expected_result</span><span class="si">}</span><span class="s2">"</span>
+</code></pre></div>
+<h2 id="sigmoid">sigmoid<a class="headerlink" href="#sigmoid" title="Permanent link">¶</a></h2>
+<p>Sigmoid 是一种常用的激活函数，特别是在神经网络中。它的数学表达式为：</p>
+<p>\[ \sigma(x) = \frac{1}{1 + e^{-x}} \]</p>
+<p>其中 \( e \) 是自然对数的底数。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+
+<span class="c1"># Define a tensor</span>
+<span class="n">input_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">])</span>
+
+<span class="c1"># Apply sigmoid function</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span>
+
+<span class="c1"># Expected result</span>
+<span class="n">expected_result</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8808</span><span class="p">,</span> <span class="mf">0.1192</span><span class="p">])</span>
+
+<span class="c1"># Test if the result is as expected</span>
+<span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">expected_result</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">),</span> <span class="sa">f</span><span class="s2">"Test failed: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2"> != </span><span class="si">{</span><span class="n">expected_result</span><span class="si">}</span><span class="s2">"</span>
+</code></pre></div>
+<h2 id="softmax">softmax<a class="headerlink" href="#softmax" title="Permanent link">¶</a></h2>
+<p>Softmax 是一种常用的激活函数，特别是在多分类问题中。它将一个向量中的每个元素转换为 0 到 1 之间的概率值，并且这些概率值的总和为 1。Softmax 函数的数学表达式为：</p>
+<p>\[ \text{softmax}(x_i) = \frac{e^{x_i}}{\sum_{j} e^{x_j}} \]</p>
+<p>其中 \( x_i \) 是输入向量中的第 \( i \) 个元素， \( e \) 是自然对数的底数。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+
+<span class="c1"># Define a tensor</span>
+<span class="n">input_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+
+<span class="c1"># Apply softmax function</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Expected result</span>
+<span class="n">expected_result</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.0900</span><span class="p">,</span> <span class="mf">0.2447</span><span class="p">,</span> <span class="mf">0.6652</span><span class="p">])</span>
+
+<span class="c1"># Test if the result is as expected</span>
+<span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">expected_result</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">),</span> <span class="sa">f</span><span class="s2">"Test failed: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2"> != </span><span class="si">{</span><span class="n">expected_result</span><span class="si">}</span><span class="s2">"</span>
+</code></pre></div>
+<h2 id="linear">linear<a class="headerlink" href="#linear" title="Permanent link">¶</a></h2>
+<p>线性变换（Linear Transformation）是线性代数中的一个基本概念，它可以用来描述向量空间中的变换。在线性代换中，输入向量通过一个矩阵变换为输出向量。这个过程可以用矩阵乘法来表示。</p>
+<h3 id="_2">方程组表示<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
+<p>假设我们有一个线性方程组：</p>
+<p>\[ y_1 = a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n \]</p>
+<p>\[ y_2 = a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n \]</p>
+<p>\[ \vdots \]</p>
+<p>\[ y_m = a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n \]</p>
+<p>其中，\( x_1, x_2, \ldots, x_n \) 是输入变量，\( y_1, y_2, \ldots, y_m \) 是输出变量，\( a_{ij} \) 是系数。</p>
+<h3 id="_3">矩阵表示<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<p>上述方程组可以用矩阵乘法来表示：</p>
+<p>\[ \mathbf{y} = \mathbf{A} \mathbf{x} \]</p>
+<p>其中：</p>
 <ul>
-<li><a href="../files/bpcsdn.pdf">深度学习系列（2）：前向传播和后向传播算法</a></li>
+<li>\(\mathbf{y}\) 是输出向量，形状为 \( m \times 1 \)</li>
+<li>\(\mathbf{A}\) 是系数矩阵，形状为 \( m \times n \)</li>
+<li>\(\mathbf{x}\) 是输入向量，形状为 \( n \times 1 \)</li>
 </ul>
-<p>这个介绍得比较全面</p>
+<p>具体来说：</p>
+<div class="highlight"><pre><span></span><code>| y1 |     | a11 a12 ... a1n |   | x1 |
+| y2 |     | a21 a22 ... a2n |   | x2 |
+| .. |  =  | ... ... ... ... | * | .. |
+| ym |     | am1 am2 ... amn |   | xn |
+</code></pre></div>
+<h3 id="_4">示例<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<p>在 PyTorch 中，可以使用 <code>torch.nn.Linear</code> 来实现线性变换。以下是一个简单的示例：</p>
+<p>\[ y_1 = 0.1 \cdot x + 0.2 \cdot y + 0.1 \]</p>
+<p>\[y_2 = 0.3 \cdot x + 0.4 \cdot y + 0.2 \]</p>
+<p>\[y_3 = 0.5 \cdot x + 0.6 \cdot y + 0.3 \]</p>
+<p>令 \[x = 1， y = 2 \]. 其实现代码如下</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+
+<span class="o">|</span> <span class="n">y1</span> <span class="o">|</span>     <span class="o">|</span> <span class="mf">0.1</span>  <span class="mf">0.2</span> <span class="o">|</span>   <span class="o">|</span> <span class="mf">1.0</span> <span class="o">|</span>   <span class="o">|</span> <span class="mf">0.1</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">y2</span> <span class="o">|</span>  <span class="o">=</span>  <span class="o">|</span> <span class="mf">0.3</span>  <span class="mf">0.4</span> <span class="o">|</span> <span class="o">*</span> <span class="o">|</span>     <span class="o">|</span> <span class="o">+</span> <span class="o">|</span> <span class="mf">0.2</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">y3</span> <span class="o">|</span>     <span class="o">|</span> <span class="mf">0.5</span>  <span class="mf">0.6</span> <span class="o">|</span>   <span class="o">|</span> <span class="mf">2.0</span> <span class="o">|</span>   <span class="o">|</span> <span class="mf">0.3</span> <span class="o">|</span>
+
+<span class="c1"># 定义输入向量</span>
+<span class="n">input_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
+
+<span class="c1"># 定义线性层</span>
+<span class="n">linear_layer</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># 输入维度为2，输出维度为3</span>
+
+<span class="c1"># 初始化权重和偏置</span>
+<span class="n">linear_layer</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">]]))</span>
+<span class="n">linear_layer</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]))</span>
+
+<span class="c1"># 进行线性变换</span>
+<span class="n">output_tensor</span> <span class="o">=</span> <span class="n">linear_layer</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">output_tensor</span><span class="p">)</span>
+
+
+<span class="c1">#out =&gt; tensor([0.6000, 1.3000, 2.0000], grad_fn=&lt;ViewBackward0&gt;)</span>
+</code></pre></div>
+<h2 id="relu">relu<a class="headerlink" href="#relu" title="Permanent link">¶</a></h2>
+<p><code>ReLU</code> 是 Rectified Linear Unit 的缩写，是一种常用的激活函数，广泛应用于神经网络中。它的定义如下：</p>
+<p>\[
+\text{ReLU}(x) = \max(0, x)
+\]</p>
+<p>在 PyTorch 中，可以通过 <code>torch.nn.ReLU</code> 或 <code>torch.nn.functional.relu</code> 来使用 ReLU 激活函数。例如：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+
+<span class="c1"># 使用 nn.ReLU</span>
+<span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+<span class="n">input_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
+<span class="n">output_tensor</span> <span class="o">=</span> <span class="n">relu</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output_tensor</span><span class="p">)</span>  <span class="c1"># 输出: tensor([0., 0., 1., 2.])</span>
+
+<span class="c1"># 使用 torch.nn.functional.relu</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="n">output_tensor</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output_tensor</span><span class="p">)</span>  <span class="c1"># 输出: tensor([0., 0., 1., 2.])</span>
+</code></pre></div>
+<h2 id="_5">操作数据集<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
+<p>在 PyTorch 中，<code>Dataset</code> 和 <code>DataLoader</code> 是处理和加载数据的两个重要工具。<code>Dataset</code> 用于存储样本及其对应的标签，而 <code>DataLoader</code> 用于将 <code>Dataset</code> 对象包装成一个可迭代对象，以便进行批量处理。</p>
+<h3 id="1-dataset">1. 创建自定义 Dataset<a class="headerlink" href="#1-dataset" title="Permanent link">¶</a></h3>
+<p>首先，我们需要创建一个自定义的 <code>Dataset</code> 类。这个类需要继承 <code>torch.utils.data.Dataset</code> 并实现以下三个方法：</p>
 <ul>
-<li><a href="../files/bpalgoritm0.html">反向传播算法（过程及公式推导</a></li>
-</ul></div>
+<li><code>__init__</code>: 初始化数据集</li>
+<li><code>__len__</code>: 返回数据集的大小</li>
+<li><code>__getitem__</code>: 根据索引返回一个样本</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataLoader</span>
+
+<span class="k">class</span> <span class="nc">CustomDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">sample</span><span class="p">,</span> <span class="n">label</span>
+</code></pre></div>
+<h3 id="2-dataloader">2. 创建 DataLoader<a class="headerlink" href="#2-dataloader" title="Permanent link">¶</a></h3>
+<p>接下来，我们使用 <code>DataLoader</code> 来加载数据集。<code>DataLoader</code> 可以自动将数据集分成小批量，并在训练时进行随机打乱。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 示例数据</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># 100 个样本，每个样本有 3 个特征</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,))</span>  <span class="c1"># 100 个标签，值为 0 或 1</span>
+
+<span class="c1"># 创建自定义数据集</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">CustomDataset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+
+<span class="c1"># 创建 DataLoader</span>
+<span class="n">dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="3-dataloader">3. 迭代 DataLoader<a class="headerlink" href="#3-dataloader" title="Permanent link">¶</a></h3>
+<p>最后，我们可以使用 <code>DataLoader</code> 来迭代数据集。在训练模型时，我们通常会在每个 epoch 中迭代整个数据集。</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>  <span class="c1"># 训练 5 个 epoch</span>
+    <span class="k">for</span> <span class="n">batch_data</span><span class="p">,</span> <span class="n">batch_labels</span> <span class="ow">in</span> <span class="n">dataloader</span><span class="p">:</span>
+        <span class="c1"># 在这里进行训练</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"数据: </span><span class="si">{</span><span class="n">batch_data</span><span class="si">}</span><span class="s2">, 标签: </span><span class="si">{</span><span class="n">batch_labels</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="_6">损失函数，优化器的使用<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<p>在深度学习中，损失函数用于衡量模型预测值与真实值之间的差距，而优化器则用于调整模型参数以最小化损失函数的值。PyTorch 提供了多种损失函数和优化器，下面我们将介绍如何使用它们。</p>
+<h3 id="1">1. 损失函数<a class="headerlink" href="#1" title="Permanent link">¶</a></h3>
+<p>PyTorch 在 <code>torch.nn</code> 模块中提供了多种常用的损失函数。以下是一些常见的损失函数及其使用示例：</p>
+<ul>
+<li><code>nn.MSELoss</code>: 均方误差损失，常用于回归任务。</li>
+<li><code>nn.CrossEntropyLoss</code>: 交叉熵损失，常用于分类任务。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+
+<span class="c1"># 示例：均方误差损失</span>
+<span class="n">mse_loss</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+<span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">mse_loss</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"MSE Loss: </span><span class="si">{</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># 示例：交叉熵损失</span>
+<span class="n">cross_entropy_loss</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+<span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">cross_entropy_loss</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cross Entropy Loss: </span><span class="si">{</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="gpu">用gpu手写训练和预测一个模型<a class="headerlink" href="#gpu" title="Permanent link">¶</a></h2></div>
 
 
 
@@ -1555,7 +2027,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../Pytorch_tudui_intro/p32%20%E9%AA%8C%E8%AF%81%E5%A5%97%E8%B7%AF/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 模型验证">
+          <a href="../%E5%85%B3%E4%BA%8E%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%E5%92%8C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%9A%84%E7%90%86%E8%A7%A3/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 后向传播">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
@@ -1565,27 +2037,11 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                模型验证
+                后向传播
               </div>
             </div>
           </a>
         
-        
-          
-          <a href="../pytorch_basic/" class="md-footer__link md-footer__link--next" aria-label="Next: Pytorch基本功">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                Pytorch基本功
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
-            </div>
-          </a>
         
       </nav>
     
