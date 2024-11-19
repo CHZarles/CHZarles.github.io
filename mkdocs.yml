@@ -19,7 +19,7 @@ copyright: Copyright &copy; 2023 ~ now | 🚀 Charles
 theme:
   name: material
   language: en
-  logo: "https://img.icons8.com/cute-clipart/800/notion.png" 
+  logo: "https://img.icons8.com/cute-clipart/800/notion.png"
   features: # 功能
     - announce.dismiss # 可以叉掉公告的功能
     # - content.action.edit # 编辑按钮，似乎没啥用
@@ -110,103 +110,91 @@ markdown_extensions: # markdown extensions
   - def_list
   - footnotes
   - md_in_html
-  - toc:
-      permalink: true
   - pymdownx.arithmatex:
       generic: true
-  - pymdownx.betterem:
-      smart_enable: all
   - pymdownx.caret
+  - pymdownx.critic
   - pymdownx.details
   - pymdownx.emoji:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
       emoji_index: !!python/name:material.extensions.emoji.twemoji
-  - pymdownx.highlight:
-      use_pygments: true
-      auto_title: true
-  - pymdownx.superfences
+  - pymdownx.highlight
   - pymdownx.inlinehilite
-  - pymdownx.snippets
   - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - toc:
+      permalink: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.snippets
   - pymdownx.magiclink:
       normalize_issue_symbols: true
       repo_url_shorthand: true
       user: squidfunk
       repo: mkdocs-material
-  - pymdownx.mark
   - pymdownx.smartsymbols
-  - pymdownx.snippets:
-      auto_append:
-        - includes/mkdocs.md
-  - pymdownx.tabbed:
-      alternate_style: true
-      combine_header_slug: true
-      slugify: !!python/object/apply:pymdownx.slugs.slugify
-        kwds:
-          case: lower
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.tilde
-
-
-# for highlight
-# extra_javascript:
-#   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js
-#   - javascripts/highlight.js
-# extra_css:
-#   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css
+  # - pymdownx.snippets:
+  #     auto_append:
+  #       - includes/mkdocs.md
+  # - pymdownx.tabbed:
+  #     alternate_style: true
+  #     combine_header_slug: true
+  #     slugify: !!python/object/apply:pymdownx.slugs.slugify
+  #       kwds:
+  #         case: lower
 
 # 导航栏配置
 nav:
   - 🚀Home: index.md
   - 🤿DeepLearning:
-    - Pytorch踹门指南:
-      - Pytorch 入门(tudui版):
-        - dir 和 help 函数: DeepLearning/Pytorch_tudui_intro/p4 dir和help函数.md
-        - Dataset: DeepLearning/Pytorch_tudui_intro/p6-p7 Dataset.md
-        - TensorBoard: ./DeepLearning/Pytorch_tudui_intro/p8-p9 TensorBoard.md
-        - Transforms: ./DeepLearning/Pytorch_tudui_intro/p10-p11 Transforms.md
-        - 常用Transforms : ./DeepLearning/Pytorch_tudui_intro/p12-p13 常用Transforms.md
-        - torchvision: ./DeepLearning/Pytorch_tudui_intro/p14 torchvision.md
-        - dataloader: ./DeepLearning/Pytorch_tudui_intro/p15 dataloader.md
-        - nn.module: ./DeepLearning/Pytorch_tudui_intro/p16 nn.module.md
-        - 卷积操作: ./DeepLearning/Pytorch_tudui_intro/p17 卷积操作.md
-        - 卷积层: ./DeepLearning/Pytorch_tudui_intro/p18 卷积层.md
-        - 最大池化层: ./DeepLearning/Pytorch_tudui_intro/p19 最大池化层.md
-        - 激活函数: ./DeepLearning/Pytorch_tudui_intro/p20 激活函数.md
-        - 线性层: ./DeepLearning/Pytorch_tudui_intro/p21 线性层.md
-        - sequential: ./DeepLearning/Pytorch_tudui_intro/p22 sequential.md
-        - 损失函数和反向传播: ./DeepLearning/Pytorch_tudui_intro/p23 损失函数和反向传播.md
-        - 优化器: ./DeepLearning/Pytorch_tudui_intro/p24 优化器.md
-        - 现有模型修改: ./DeepLearning/Pytorch_tudui_intro/p25 现有模型修改.md
-        - 模型保存和修改: ./DeepLearning/Pytorch_tudui_intro/p26 模型保存和加载.md
-        - 模型训练套路: ./DeepLearning/Pytorch_tudui_intro/p27-p29 模型训练套路.md
-        - 使用GPU: ./DeepLearning/Pytorch_tudui_intro/p30-p31 GPU.md
-        - 模型验证: ./DeepLearning/Pytorch_tudui_intro/p32 验证套路.md
-      - Pytorch面试精华: none.md
-    - 知识碎片:
-      - 后向传播: ./DeepLearning/other/关于前向传播和反向传播的理解.md
+      - Pytorch踹门指南:
+          - Pytorch 入门(tudui版):
+              - dir 和 help 函数: DeepLearning/Pytorch_tudui_intro/p4 dir和help函数.md
+              - Dataset: DeepLearning/Pytorch_tudui_intro/p6-p7 Dataset.md
+              - TensorBoard: ./DeepLearning/Pytorch_tudui_intro/p8-p9 TensorBoard.md
+              - Transforms: ./DeepLearning/Pytorch_tudui_intro/p10-p11 Transforms.md
+              - 常用Transforms: ./DeepLearning/Pytorch_tudui_intro/p12-p13 常用Transforms.md
+              - torchvision: ./DeepLearning/Pytorch_tudui_intro/p14 torchvision.md
+              - dataloader: ./DeepLearning/Pytorch_tudui_intro/p15 dataloader.md
+              - nn.module: ./DeepLearning/Pytorch_tudui_intro/p16 nn.module.md
+              - 卷积操作: ./DeepLearning/Pytorch_tudui_intro/p17 卷积操作.md
+              - 卷积层: ./DeepLearning/Pytorch_tudui_intro/p18 卷积层.md
+              - 最大池化层: ./DeepLearning/Pytorch_tudui_intro/p19 最大池化层.md
+              - 激活函数: ./DeepLearning/Pytorch_tudui_intro/p20 激活函数.md
+              - 线性层: ./DeepLearning/Pytorch_tudui_intro/p21 线性层.md
+              - sequential: ./DeepLearning/Pytorch_tudui_intro/p22 sequential.md
+              - 损失函数和反向传播: ./DeepLearning/Pytorch_tudui_intro/p23 损失函数和反向传播.md
+              - 优化器: ./DeepLearning/Pytorch_tudui_intro/p24 优化器.md
+              - 现有模型修改: ./DeepLearning/Pytorch_tudui_intro/p25 现有模型修改.md
+              - 模型保存和修改: ./DeepLearning/Pytorch_tudui_intro/p26 模型保存和加载.md
+              - 模型训练套路: ./DeepLearning/Pytorch_tudui_intro/p27-p29 模型训练套路.md
+              - 使用GPU: ./DeepLearning/Pytorch_tudui_intro/p30-p31 GPU.md
+              - 模型验证: ./DeepLearning/Pytorch_tudui_intro/p32 验证套路.md
+      - 知识碎片:
+          - 后向传播: ./DeepLearning/other/关于前向传播和反向传播的理解.md
+          - Pytorch基本功: ./DeepLearning/other/pytorch_basic.md
   - 🏁Competitive Programing: none.md
   - 📚CS basic: none.md
-  - 🐦Projects: 
-    - KnowledgeBrain: 
-      - reference: projects/KnowledgeBrain/reference.md
+  - 🐦Projects:
+      - KnowledgeBrain:
+          - reference: projects/KnowledgeBrain/reference.md
   - 🤗Other: none.md
-    
 
 # 插件配置
 plugins:
   - search # 启用搜索功能
   - tags # 启用标签功能
-
-# 其他配置
-markdown_extensions:
-  - toc: # 启用目录
-      permalink: true
-
-
-# pdf
-markdown_extensions:
-  - attr_list
-plugins:
+  - glightbox:
+      draggable: false
   - mkdocs-pdf
