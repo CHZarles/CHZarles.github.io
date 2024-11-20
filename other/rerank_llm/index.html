@@ -12,28 +12,24 @@
         <meta name="author" content="charles">
       
       
-        <link rel="canonical" href="https://localhost:8000/DeepLearning/Pytorch_tudui_intro/p16%20nn.module/">
+        <link rel="canonical" href="https://localhost:8000/other/rerank_llm/">
       
       
-        <link rel="prev" href="../p15%20dataloader/">
       
       
-        <link rel="next" href="../p17%20%E5%8D%B7%E7%A7%AF%E6%93%8D%E4%BD%9C/">
-      
-      
-      <link rel="icon" href="../../../assets/favicon.png">
+      <link rel="icon" href="../../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
     
     
       
-        <title>nn.module - CHZarles</title>
+        <title>Rerank llm - CHZarles</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -77,14 +73,14 @@
     
       <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
     html.glightbox-open { overflow: initial; height: 100%; }
     .gslide-title { margin-top: 0px; user-select: text; }
     .gslide-desc { color: #666; user-select: text; }
@@ -93,7 +89,7 @@
     .gdesc-inner { font-size: 0.75rem; }
     body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
     body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -111,11 +107,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#_1" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -128,7 +119,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="CHZarles" class="md-header__button md-logo" aria-label="CHZarles" data-md-component="logo">
+    <a href="../.." title="CHZarles" class="md-header__button md-logo" aria-label="CHZarles" data-md-component="logo">
       
   <img src="https://img.icons8.com/cute-clipart/800/notion.png" alt="logo">
 
@@ -147,7 +138,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              nn.module
+              Rerank llm
             
           </span>
         </div>
@@ -265,7 +256,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
     
@@ -280,7 +271,11 @@
         
   
   
+  
     
+    
+      
+  
   
   
     
@@ -288,21 +283,11 @@
       
   
   
-    
-  
   
     
     
-      
-  
-  
-    
-  
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../p4%20dir%E5%92%8Chelp%E5%87%BD%E6%95%B0/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../DeepLearning/Pytorch_tudui_intro/p4%20dir%E5%92%8Chelp%E5%87%BD%E6%95%B0/" class="md-tabs__link">
           
   
     
@@ -326,7 +311,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../none.md" class="md-tabs__link">
+      <a href="../../none.md" class="md-tabs__link">
         
   
     
@@ -351,7 +336,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../engineering/langchain/intro.md" class="md-tabs__link">
+        <a href="../../engineering/langchain/intro.md" class="md-tabs__link">
           
   
     
@@ -372,7 +357,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../none.md" class="md-tabs__link">
+      <a href="../../none.md" class="md-tabs__link">
         
   
     
@@ -397,7 +382,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../projects/KnowledgeBrain/reference.md" class="md-tabs__link">
+        <a href="../../projects/KnowledgeBrain/reference.md" class="md-tabs__link">
           
   
     
@@ -420,7 +405,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../other/%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%AC%E5%9B%9E/" class="md-tabs__link">
+        <a href="../%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%AC%E5%9B%9E/" class="md-tabs__link">
           
   
     
@@ -461,7 +446,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="CHZarles" class="md-nav__button md-logo" aria-label="CHZarles" data-md-component="logo">
+    <a href="../.." title="CHZarles" class="md-nav__button md-logo" aria-label="CHZarles" data-md-component="logo">
       
   <img src="https://img.icons8.com/cute-clipart/800/notion.png" alt="logo">
 
@@ -490,7 +475,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -507,10 +492,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -521,22 +504,21 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -547,7 +529,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             🤿DeepLearning
@@ -558,10 +540,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -571,21 +551,20 @@
     
       
       
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
         
           
-          
         
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
         
           
-          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -596,7 +575,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_1">
             <span class="md-nav__icon md-icon"></span>
             Pytorch踹门指南
@@ -607,10 +586,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -664,11 +641,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1_1" >
         
           
           <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
@@ -682,7 +661,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_1_1">
             <span class="md-nav__icon md-icon"></span>
             Pytorch 入门(tudui版)
@@ -696,7 +675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p4%20dir%E5%92%8Chelp%E5%87%BD%E6%95%B0/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p4%20dir%E5%92%8Chelp%E5%87%BD%E6%95%B0/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -717,7 +696,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p6-p7%20Dataset/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p6-p7%20Dataset/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -738,7 +717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p8-p9%20TensorBoard/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p8-p9%20TensorBoard/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -759,7 +738,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p10-p11%20Transforms/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p10-p11%20Transforms/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -780,7 +759,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p12-p13%20%E5%B8%B8%E7%94%A8Transforms/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p12-p13%20%E5%B8%B8%E7%94%A8Transforms/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -801,7 +780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p14%20torchvision/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p14%20torchvision/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -822,7 +801,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p15%20dataloader/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p15%20dataloader/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -840,28 +819,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    nn.module
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p16%20nn.module/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -870,33 +831,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      介绍
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -909,7 +843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p17%20%E5%8D%B7%E7%A7%AF%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p17%20%E5%8D%B7%E7%A7%AF%E6%93%8D%E4%BD%9C/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -930,7 +864,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p18%20%E5%8D%B7%E7%A7%AF%E5%B1%82/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p18%20%E5%8D%B7%E7%A7%AF%E5%B1%82/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -951,7 +885,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p19%20%E6%9C%80%E5%A4%A7%E6%B1%A0%E5%8C%96%E5%B1%82/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p19%20%E6%9C%80%E5%A4%A7%E6%B1%A0%E5%8C%96%E5%B1%82/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -972,7 +906,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p20%20%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p20%20%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -993,7 +927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p21%20%E7%BA%BF%E6%80%A7%E5%B1%82/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p21%20%E7%BA%BF%E6%80%A7%E5%B1%82/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1014,7 +948,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p22%20sequential/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p22%20sequential/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1035,7 +969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p23%20%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%92%8C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p23%20%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%92%8C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1056,7 +990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p24%20%E4%BC%98%E5%8C%96%E5%99%A8/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p24%20%E4%BC%98%E5%8C%96%E5%99%A8/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1077,7 +1011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p25%20%E7%8E%B0%E6%9C%89%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%94%B9/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p25%20%E7%8E%B0%E6%9C%89%E6%A8%A1%E5%9E%8B%E4%BF%AE%E6%94%B9/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1098,7 +1032,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p26%20%E6%A8%A1%E5%9E%8B%E4%BF%9D%E5%AD%98%E5%92%8C%E5%8A%A0%E8%BD%BD/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p26%20%E6%A8%A1%E5%9E%8B%E4%BF%9D%E5%AD%98%E5%92%8C%E5%8A%A0%E8%BD%BD/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1119,7 +1053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p27-p29%20%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E5%A5%97%E8%B7%AF/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p27-p29%20%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E5%A5%97%E8%B7%AF/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1140,7 +1074,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p30-p31%20GPU/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p30-p31%20GPU/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1161,7 +1095,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p32%20%E9%AA%8C%E8%AF%81%E5%A5%97%E8%B7%AF/" class="md-nav__link">
+      <a href="../../DeepLearning/Pytorch_tudui_intro/p32%20%E9%AA%8C%E8%AF%81%E5%A5%97%E8%B7%AF/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1209,13 +1143,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -1224,7 +1155,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
         
           
-          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1249,7 +1180,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/%E5%85%B3%E4%BA%8E%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%E5%92%8C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%9A%84%E7%90%86%E8%A7%A3/" class="md-nav__link">
+      <a href="../../DeepLearning/other/%E5%85%B3%E4%BA%8E%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%E5%92%8C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%9A%84%E7%90%86%E8%A7%A3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1270,7 +1201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../other/pytorch_basic/" class="md-nav__link">
+      <a href="../../DeepLearning/other/pytorch_basic/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1306,7 +1237,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../none.md" class="md-nav__link">
+      <a href="../../none.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1418,7 +1349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../engineering/langchain/intro.md" class="md-nav__link">
+      <a href="../../engineering/langchain/intro.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1454,7 +1385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../none.md" class="md-nav__link">
+      <a href="../../none.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1566,7 +1497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../projects/KnowledgeBrain/reference.md" class="md-nav__link">
+      <a href="../../projects/KnowledgeBrain/reference.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1648,7 +1579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%AC%E5%9B%9E/" class="md-nav__link">
+      <a href="../%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%AC%E5%9B%9E/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1687,23 +1618,6 @@
   
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      介绍
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1720,29 +1634,9 @@
   
 
 
-  <h1>nn.module</h1>
-
-<div><h3 id="_1">介绍<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
-<p>nn.module是pytorch框架中搭建神经网络的基础，所有的神经网络都需要继承这个模块。</p>
-<p>ps:这里还是仔细看官方文档</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+  <h1>Rerank llm</h1>
 
 
-<span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> 
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span> 
-
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>  <span class="c1"># 前向传播</span>
-        <span class="n">output</span> <span class="o">=</span> <span class="nb">input</span> <span class="o">+</span> <span class="mi">23</span>
-        <span class="k">return</span> <span class="n">output</span>
-
-<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">()</span>  
-<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>  
-<span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  
-<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-</code></pre></div>
-<p>这块就是讲了神经网络继承下这个类，找个简单神经网络写一下就懂了。</p></div>
 
 
 
@@ -1774,44 +1668,6 @@
         <footer class="md-footer">
   
     
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../p15%20dataloader/" class="md-footer__link md-footer__link--prev" aria-label="Previous: dataloader">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                dataloader
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../p17%20%E5%8D%B7%E7%A7%AF%E6%93%8D%E4%BD%9C/" class="md-footer__link md-footer__link--next" aria-label="Next: 卷积操作">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                卷积操作
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1841,18 +1697,18 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["announce.dismiss", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.expand", "navigation.footer", "navigation.indexes", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.expand", "navigation.footer", "navigation.indexes", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
-        <script src="../../../javascripts/katex.js"></script>
+        <script src="../../javascripts/katex.js"></script>
       
         <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
       
         <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
       
-        <script src="../../../javascripts/mathjax.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
