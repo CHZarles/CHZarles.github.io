@@ -185,6 +185,9 @@ nav:
           - 后向传播: ./DeepLearning/other/关于前向传播和反向传播的理解.md
           - Pytorch基本功: ./DeepLearning/other/pytorch_basic.md
   - 🏁Competitive Programing: none.md
+  - 🤖Engineering:
+      - LangChain:
+          - intro: ./engineering/langchain/intro.md
   - 📚CS basic: none.md
   - 🐦Projects:
       - KnowledgeBrain:
