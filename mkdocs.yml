@@ -192,7 +192,8 @@ nav:
   - 🐦Projects:
       - KnowledgeBrain:
           - reference: projects/KnowledgeBrain/reference.md
-  - 🤗Other: none.md
+  - 🤗Other:
+      - Faiss召回: ./other/什么是召回.md
 
 # 插件配置
 plugins:
