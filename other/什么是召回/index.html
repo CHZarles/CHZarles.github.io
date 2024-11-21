@@ -18,6 +18,8 @@
         <link rel="prev" href="../../DeepLearning/other/pytorch_basic/">
       
       
+        <link rel="next" href="../rerank_llm/">
+      
       
       <link rel="icon" href="../../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
@@ -1548,6 +1550,8 @@
       
         
       
+        
+      
     
     
       
@@ -1692,10 +1696,49 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#bm25" class="md-nav__link">
+    <span class="md-ellipsis">
+      BM25 召回
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-idf" class="md-nav__link">
+    <span class="md-ellipsis">
+      IF-IDF 召回
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rerank_llm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rerank 在RAG里的作用
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1787,6 +1830,24 @@
   <a href="#faiss" class="md-nav__link">
     <span class="md-ellipsis">
       Faiss
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bm25" class="md-nav__link">
+    <span class="md-ellipsis">
+      BM25 召回
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-idf" class="md-nav__link">
+    <span class="md-ellipsis">
+      IF-IDF 召回
     </span>
   </a>
   
@@ -1887,7 +1948,10 @@
 <li>支持大规模数据集的处理和索引构建。</li>
 </ul>
 <p>Faiss 常用于推荐系统、图像检索、自然语言处理等领域中的相似性搜索任务。
-在信息检索和推荐系统中，召回率（Recall）是一个重要的评估指标，用于衡量系统在所有相关项中成功检索到的比例。Faiss 作为一个高效的相似性搜索库，可以显著提高大规模数据集上的检索效率，从而影响召回率。</p></div>
+在信息检索和推荐系统中，召回率（Recall）是一个重要的评估指标，用于衡量系统在所有相关项中成功检索到的比例。Faiss 作为一个高效的相似性搜索库，可以显著提高大规模数据集上的检索效率，从而影响召回率。</p>
+<h2 id="bm25">BM25 召回<a class="headerlink" href="#bm25" title="Permanent link">¶</a></h2>
+<h2 id="if-idf">IF-IDF 召回<a class="headerlink" href="#if-idf" title="Permanent link">¶</a></h2>
+<p>TF-IDF（Term Frequency-Inverse Document Frequency）是一种用于文本检索和文本挖掘的统计方法，用来评估一个词语在一个文档集或一个语料库中的重要程度。TF-IDF 召回指的是使用 TF-IDF 算法从文档集合中召回与查询相关的文档。</p></div>
 
 
 
@@ -1938,6 +2002,22 @@
             </div>
           </a>
         
+        
+          
+          <a href="../rerank_llm/" class="md-footer__link md-footer__link--next" aria-label="Next: Rerank 在RAG里的作用">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Rerank 在RAG里的作用
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+            </div>
+          </a>
         
       </nav>
     
