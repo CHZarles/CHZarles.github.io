@@ -195,6 +195,7 @@ nav:
   - 🤗Other:
       - Faiss召回: ./other/什么是召回.md
       - Rerank 在RAG里的作用: ./other/rerank_llm.md
+      - 资源网站: ./other/resource.md
 
 # 插件配置
 plugins:
