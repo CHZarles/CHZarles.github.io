@@ -188,6 +188,9 @@ nav:
   - 🤖Engineering:
       - LangChain:
           - intro: ./engineering/langchain/intro.md
+      - 动手写RAG:
+          - 资料: ./engineering/rag_practice/readme.md
+          - Part4 文本索引与检索: ./engineering/rag_practice/part4.md
   - 📚CS basic: none.md
   - 🐦Projects:
       - KnowledgeBrain:
@@ -196,6 +199,7 @@ nav:
       - Faiss召回: ./other/什么是召回.md
       - Rerank 在RAG里的作用: ./other/rerank_llm.md
       - 资源网站: ./other/resource.md
+      - 雅思: ./other/IELS.md
 
 # 插件配置
 plugins:

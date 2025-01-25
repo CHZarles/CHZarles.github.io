@@ -1,1 +1,19 @@
-mkdocs gh-deploy --clean
+- TensorBoard: ./DeepLearning/Pytorch_tudui_intro/p8-p9 TensorBoard.md
+- Transforms: ./DeepLearning/Pytorch_tudui_intro/p10-p11 Transforms.md
+- 常用Transforms : ./DeepLearning/Pytorch_tudui_intro/p12-p13 常用Transforms.md
+- torchvision: ./DeepLearning/Pytorch_tudui_intro/p14 torchvision.md
+- dataloader: ./DeepLearning/Pytorch_tudui_intro/p15 dataloader.md
+- nn.module: ./DeepLearning/Pytorch_tudui_intro/p16 nn.module.md
+- 卷积操作: ./DeepLearning/Pytorch_tudui_intro/p17 卷积操作.md
+- 卷积层: ./DeepLearning/Pytorch_tudui_intro/p18 卷积层.md
+- 最大池化层: ./DeepLearning/Pytorch_tudui_intro/p19 最大池化层.md
+- 激活函数: ./DeepLearning/Pytorch_tudui_intro/p20 激活函数.md
+- 线性层: ./DeepLearning/Pytorch_tudui_intro/p21 线性层.md
+- sequential: ./DeepLearning/Pytorch_tudui_intro/p22 sequential.md
+- 损失函数和反向传播: ./DeepLearning/Pytorch_tudui_intro/p23 损失函数和反向传播.md
+- 优化器: ./DeepLearning/Pytorch_tudui_intro/p24 优化器.md
+- 现有模型修改: ./DeepLearning/Pytorch_tudui_intro/p25 现有模型修改.md
+- 模型保存和修改: ./DeepLearning/Pytorch_tudui_intro/p26 模型保存和加载.md
+- 模型训练套路: ./DeepLearning/Pytorch_tudui_intro/p27-p29 模型训练套路.md
+- 使用GPU: ./DeepLearning/Pytorch_tudui_intro/p30-p31 GPU.md
+- 模型验证: ./DeepLearning/Pytorch_tudui_intro/p32 验证套路.md
